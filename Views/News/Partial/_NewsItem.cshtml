@@ -1,0 +1,36 @@
+@using ketnoicungcau.business.Extensions
+@model ketnoicungcau.business.Model.News
+
+@if (Model != null && Model.Newsid > 0)
+{
+    if (Model.Newstype == 2)
+    {
+        <li>
+            <a href="@Model.GenNewsUrl()">
+                <div class="img img-hasvideo">
+                    <img src="@Model.Video" alt="@Model.Title">
+                    <i class="icon-video"></i>
+                </div>
+                <div class="content">
+                    <h3 class="news-limited">@Model.Title</h3>
+                    <p class="time">@Model.Createddate?.ToString("dd/MM/yyyy")</p>
+                </div>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Model.GenNewsUrl()">
+                <div class="img">
+                    <img src="@Model.Image" alt="@Model.Title">
+                </div>
+                <div class="content">
+                    <h3 class="news-limited">@Model.Title</h3>
+                    <p class="time">@Model.Createddate?.ToString("dd/MM/yyyy")</p>
+                </div>
+            </a>
+        </li>
+    }
+
+}

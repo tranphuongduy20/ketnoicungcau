@@ -1,0 +1,63 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmProductDetail
+
+<div class="info">
+    @if (string.IsNullOrEmpty(Model.Product.Company.Companyname) == false) {
+        <p class="info-company">@Model.Product.Company.Companyname</p>
+    }
+    @if (string.IsNullOrEmpty(Model.Product.Productname) == false) {
+        <h2 class="info-name">@Model.Product.Productname
+            <partial name="~/Views/Product/Partial/_WishButton.cshtml" model=@Model />
+         </h2>
+    }
+    @if (string.IsNullOrEmpty(Model.Product.Shortdescription) == false) {
+        <p class="info-note">@Model.Product.Shortdescription</p>
+    }
+    <partial name="~/Views/Product/Partial/_Price.cshtml" model="@Model" />
+    <ul class="listinfo">
+        @if (string.IsNullOrEmpty(Model.StringProductStandard) == false) {
+          <li>
+            <p class="txtl">
+                <i class="icon-info"></i>
+                Tiêu chuẩn:
+            </p>
+            <p class="txtr">@Model.StringProductStandard</p>
+          </li>
+        }
+        @*@if (string.IsNullOrEmpty(Model.StringSpecialties) == false) {
+          <li>
+            <p class="txtl">
+                <i class="icon-info"></i>
+                Đặc sản:
+            </p>
+            <p class="txtr">@Model.StringSpecialties</p>
+          </li>
+        }*@
+        @if (string.IsNullOrEmpty(Model.Provincename) == false) {
+          <li>
+            <p class="txtl">
+                <i class="icon-info"></i>
+                Xuất xứ:
+            </p>
+            <p class="txtr">@Model.Provincename</p>
+          </li>
+        }
+        @if (string.IsNullOrEmpty(Model.Product.Orderprocedure) == false) {
+          <li>
+            <p class="txtl">
+                <i class="icon-info"></i>
+                Quy cách đóng gói:
+            </p>
+            <p class="txtr">@Model.Product.Orderprocedure</p>
+          </li>
+        }
+        @*@if (string.IsNullOrEmpty(Model.Product.Urlyoutube) == false) {
+          <li>
+            <p class="txtl">
+                <i class="icon-info"></i>
+                Link Youtube:
+            </p>
+            <p class="txtr"><a href="@Model.Product.Urlyoutube" target="_blank">@Model.Product.Urlyoutube</a></p>
+          </li>
+        }*@
+    </ul>
+</div>

@@ -1,0 +1,55 @@
+﻿@using ketnoicungcau.business.Extensions
+@model ketnoicungcau.business.ModelWeb.ProductWeb
+
+ <div class="boxinfo clearfix" data-companyid="@Model.Company.Companyid">
+     @if (Model.Company != null) {
+        <div class="item">
+            <h3>Thông tin doanh nghiệp:</h3>
+            <div class="content">
+                @if (string.IsNullOrEmpty(Model.Company.Companyname) == false) {
+                <a href="@Model.Company.GenCompanyUrl()" target="_blank">
+                    <div>
+                        <p class="bold">@Model.Company.Companyname</p>
+                        @{
+                            if (Model.Company.IsAuthentic == 1)
+                            {
+                                <i class="icon-authen tooltip">
+                                    <span class="tooltiptext">Đã được kiểm duyệt bởi Sở Công Thương</span>
+                                </i>
+                            }
+                        }
+                    </div>
+                </a>
+                }
+                @if (string.IsNullOrEmpty(Model.Company.Taxid) == false) {
+                    <p id="MST">MST: @Model.Company.Taxid</p>
+                }
+                @if (string.IsNullOrEmpty(Model.Company.Taxid)) {
+                    <p>Website: <a href="@Model.Company.Weburl" target="_blank">@Model.Company.Weburl</a></p>
+                }
+                @if (string.IsNullOrEmpty(Model.Company.Email) == false) {
+                    var mailto = "mailto:" + Model.Company.Email;
+                    <p>Email: <a href="@mailto">@Model.Company.Email</a></p>
+                }
+                @if (string.IsNullOrEmpty(Model.Company.Fburl) == false) {
+                    <p>Fanpage: <a href="@Model.Company.Fburl" target="_blank">@Model.Company.Fburl</a></p>
+                }  
+            </div>
+        </div>
+     }
+    <div class="item">
+        <h3>Thông tin người đại diện:</h3>
+        <div class="content">
+            @if (string.IsNullOrEmpty(Model.Fullname) == false) {
+                <p class="bold">@Model.Fullname</p>
+            }
+            @if (string.IsNullOrEmpty(Model.Positions) ==false) {
+                <p>Chức vụ: @Model.Positions</p>
+            }
+            @if (string.IsNullOrEmpty(Model.Phonenumber)) {
+                var tel = "tel:" + Model.Phonenumber;
+                <p>Điện thoại: <a href="@tel">@Model.Phonenumber</a></p>
+            }
+        </div>
+    </div>
+</div>

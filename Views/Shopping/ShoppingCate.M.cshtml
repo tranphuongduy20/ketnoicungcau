@@ -1,0 +1,82 @@
+@using System.Web
+@model ketnoicungcau.vn.ViewModels.vmShoppingCate
+
+@{
+    var cateTitle = Model.CategoryWebsite.cateName;
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Danh sách website mua sắm " + cateTitle + " trực tuyến";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Danh sách website mua sắm " + cateTitle + " trực tuyến",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    @if (true)
+    {
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/Shopping/shopping.M.dev.css?v=@rnd">
+    }
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        var query = {
+            CategoryId: '@Model.CategoryWebsite.CateId',
+                CategoryName: '@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.CategoryWebsite.cateName))',
+                StrListCateId: '',
+                PageIndex: 0,
+                PageSize: '10',
+                IsFilterManyCate: '0',
+                CategoryUrl: '@Model.CategoryWebsite.cateUrl',
+                StrCate: '@Model.StrCate',
+                IsGetAll: false,
+                IsMobile: true,
+        };
+        if (@Model.Left <= 0)
+            $('#viewMore').hide();
+    </script>
+
+    <script src="~/Contents/js/bundle/shopping.min.js?v=@rnd"></script>
+}
+
+<section>
+    <div class="boxwrap">
+        <div class="block">
+            <h2 class="block__title">@Model.CategoryWebsite.cateName</h2>
+
+            @if (Model.CategoryWebsite.ProductCategories != null && Model.CategoryWebsite.ProductCategories.Count > 0)
+            {
+                <div class="quicklink">
+                    <a href="javascript:void(0)" data-url="all" data-id="0" class="cate__filter @(Model.CategoryWebsite.CateId > 0 ? "active" : "")">Tất cả</a>
+
+                    @foreach (var cate in Model.CategoryWebsite.ProductCategories)
+                    {
+                        <a href="javascript:void(0)" data-url="@cate.Url" data-id="@cate.Categoryid" class="cate__filter @(Model.CategoryWebsite.CateId == cate.Categoryid ? "active" : "")">@cate.Categoryname</a>
+                    }
+                </div>
+                <a hidden id="show-all-cate" style="color: #1C67D8" class="arrow-menu click-submenu">Xem tất cả danh mục</a>
+            }
+            else
+            {
+                <a hidden href="javascript:void(0)" data-url="all" data-id="0" class="cate__filter active">Tất cả</a>
+            }
+            @if (Model.CategoryWebsite.websites != null && Model.CategoryWebsite.websites.Count != 0)
+            {
+                <ul class="listonline">
+                    @await Html.PartialAsync("~/Views/Shopping/Partial/_ListWebsite.cshtml", Model.CategoryWebsite.websites)
+                </ul>
+            }
+            <a id="viewMore" onclick="viewMoreWebsiteList()" class="btn-readmore arrowB"><span>Xem thêm @Model.Left website @Model.CategoryWebsite.cateName</span></a>
+        </div>
+    </div>
+</section>

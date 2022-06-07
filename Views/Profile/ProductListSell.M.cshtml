@@ -1,0 +1,96 @@
+﻿@using ketnoicungcau.vn.ViewModels
+@model ketnoicungcau.vn.ViewModels.vmProductList
+
+@{
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Danh sách sản phẩm chào bán - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Danh sách sản phẩm chào bán - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.M.min.css?v=@rnd">
+}
+
+<section>
+    <div class="profile clearfix">
+        <div class="content">
+            <h2>
+                Sản phẩm chào bán
+            </h2>
+            <div class="content-wrap">
+                <form class="up-product">
+                    <div class="click-find">
+                        <input type="text" placeholder="Tìm nhanh sản phẩm chào bán đã đăng">
+                        <i class="icon-search"></i>
+                    </div>
+                </form>
+                <a class="uploadproduct" href="/addproduct?type=2">ĐĂNG SẢN PHẨM CHÀO BÁN</a>
+                <div class="table-buyandsell">
+                    @{
+                        if (Model != null && Model.ProductList != null && Model.ProductList.Any())
+                        {
+                            @await Html.PartialAsync("~/Views/Profile/Partial/ProductList/_ProductList.cshtml", new RequestProductListView { ListProduct = Model.ProductList, IsAjax = false })
+                        }
+                        else
+                        {
+                            <p style="text-align: center; margin: 50px 0 50px 0 ">Bạn chưa có sản phẩm chào bán nào !</p>
+                        }
+                    }
+                </div>
+                <a onclick="viewMoreProduct()" href="javascript:;" class="seemore-another" style="width: 305px;">Xem thêm @Model.Left sản phẩm khác</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="popup-delsp">
+    <div class="bg-connect"></div>
+    <div class="box-delsp">
+        <strong>Xóa sản phẩm</strong>
+        <p>Sản phẩm đã xóa sẽ không thể khôi phục <br /> Bạn chắc chắn vẫn muốn xóa sản phẩm này chứ?</p>
+        <div class="btn-delsp">
+            <a href="javascript:;" class="btn-back">Trở về</a>
+            <a href="javascript:;" class="btn-del">Xóa</a>
+        </div>
+    </div>
+</div>
+<div class="popup-update-status">
+    <div class="bg-connect"></div>
+    <div class="box-delsp">
+        <strong>Cập nhật trạng thái</strong>
+        <p>Bạn muốn thay đổi trạng thái sản phẩm ?</p>
+        <div class="btn-delsp">
+            <a href="javascript:;" class="btn-back-update">Trở về</a>
+            <a href="javascript:;" class="btn-update">Đồng ý</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        var query = {
+            PageSize: @Model.Filter.PageSize,
+            PageIndex: @Model.Filter.PageIndex,
+            Type: @Model.Filter.Type,
+            Keyword: '@Model.Filter.Keyword',
+            Left: @Model.Left,
+            Total: @Model.Total,
+        };
+
+        if (query.Left <= 0)
+            $('.seemore-another').hide();
+    </script>
+    <script src="~/Contents/js/bundle/productlist.min.js?v=@rnd"></script>
+}

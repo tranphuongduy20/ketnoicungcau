@@ -1,0 +1,34 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmCategory
+
+<div id="list-cate" class="filter__item">
+    <p class="filter-txt">Danh mục sản phẩm</p>
+    <div class="filter-main">
+
+        <div class="filter-search">
+            <input type="text" placeholder="Tìm danh mục sản phẩm">
+            <button type="submit">
+                <i class="icon-search"></i>
+            </button>
+        </div>
+
+        <ul class="list-distrist">
+            @{
+                if (Model.ListCateBuy != null && Model.ListCateBuy.Any())
+                {
+                    foreach (var item in Model.ListCateBuy)
+                    {
+                        if (Model.isSell)
+                        {
+                            <li data-href="@item.Url" data-id="@item.Categoryid"><a><i class="icon-checked"></i>@item.Categoryname</a></li>
+                        }
+                        else
+                        {
+                            <li class = "@(item.Categoryid == Model.CategoryId ? "act" : "")" data-href="@item.Url" data-id="@item.Categoryid"><a><i class="icon-checked"></i>@item.Categoryname</a></li>
+                        }
+                        
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

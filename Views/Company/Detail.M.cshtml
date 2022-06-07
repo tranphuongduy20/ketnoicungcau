@@ -1,0 +1,132 @@
+﻿@using ketnoicungcau.business.UI
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.vn.ViewComponents
+@using ketnoicungcau.business.Enums
+@model ketnoicungcau.vn.ViewModels.vmCompany
+@{
+    var title = Model.Company.Companyname;
+    Layout = "_Layout.M";
+    ViewData["Title"] = title;
+    var rnd = new Random().Next();
+
+    var totalSell = Model?.ListSell.Count > 0 ? Model?.ListSell.FirstOrDefault().Totalrecord : 0;
+    var totalBuy = Model?.ListBuy.Count > 0 ? Model?.ListBuy.FirstOrDefault().Totalrecord : 0;
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = title,
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var query = {
+                CompanyId: '@Model.CompanyId',
+                ProductType: '0',
+                PageIndexSell: 0,
+                PageIndexBuy: 0,
+                PageSizeSell: '@Model.PageSizeSell',
+                PageSizeBuy: '@Model.PageSizeBuy',
+            };
+    </script>
+    <script src="~/Contents/js/bundle/company.M.min.js"></script>
+}
+<head>
+    <link rel="stylesheet" href="~/Contents/css/bundle/global.M.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/bundle/listing.M.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/bundle/company.M.min.css" />
+</head>
+
+@if (Model.Company != null)
+{
+    var mailto = "mailto:" + Model.Company.Email;
+    var tel = "tel:" + Model.Company.Phonenumber;
+    <section>
+        <div class="detail">
+            <div class="detail-top clearfix">
+                <div class="img">
+                    <img src="@Model.Company.Logosrc" alt="@Model.Company.Companyname">
+                </div>
+                <div class="info">
+                    <div class="info-cpn">
+                        <h2>Thông tin doanh nghiệp</h2>
+                        <div>
+                            <p class="text-company">@Model.Company.Companyname</p>
+                            @{
+                                if (Model.Company.IsAuthentic == 1)
+                                {
+                                    <i class="icon-authen tooltip">
+                                        <span class="tooltiptext">Đã được kiểm duyệt bởi Sở Công Thương</span>
+                                    </i>
+                                }
+                            }
+                        </div>
+                        <p class="txt">MST: @Model.Company.Taxid</p>
+                        <p class="txt">Website: <a href="@Model.Company.Weburl" target="_blank">@Model.Company.Weburl</a></p>
+                        <p class="txt">Hotline: <a href="@tel">@Model.Company.Phonenumber</a></p>
+                        <p class="txt">Email: <a href="@mailto">@Model.Company.Email</a></p>
+                        <p class="txt">Fanpage: <a href="@Model.Company.Fburl" target="_blank">@Model.Company.Fburl</a></p>
+                    </div>
+                    <div class="info-people">
+                        <h2>Thông tin người đại diện</h2>
+                        <p class="txt">
+                            <span>Họ và tên:</span>@Model.Company.Representname
+                        </p>
+                        <p class="txt">
+                            <span>Chức vụ:</span>@Model.Company.Representposition
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="article">
+                <div class="content showall">
+                    <h2 class="intro-ttl">Giới thiệu doanh nghiệp</h2>
+                    @Html.Raw(Model.Company.Description.Replace("../", "/cms/"))
+                </div>
+                <div class="bg-article"></div>
+                <a href="javascript:void(0)" onclick="showAllContent()" class="btn-seemore">
+                    <span>Xem thêm</span>
+                </a>
+            </div>
+        </div>
+        <div class="related">
+            <div class="block block__sell">
+                @if (Model.ListSell != null && Model.ListSell.Count > 0)
+                {
+                    <h3>Sản phẩm chào bán</h3>
+                    <ul class="listproduct">
+                        <partial name="~/Views/Common/Partial/_ListProduct.cshtml" model="@Model.ListSell" />
+                    </ul>
+                    @if (totalSell > (Model.PageIndexSell + 1) * Model.PageSizeSell)
+                    {
+                        <a href="javascript:viewMoreProduct('@((int)ProductType.Sell)')" class="btn-readmore arrowB"><span>Xem thêm @(totalSell - (Model.PageIndexSell + 1) * Model.PageSizeSell) sản phẩm chào bán </span></a>
+                    }
+                }
+
+            </div>
+            <div class="block block__buy">
+                @if (Model.ListBuy != null && Model.ListBuy.Count > 0)
+                {
+                    <h3>Sản phẩm chào mua</h3>
+                    <ul id="listproduct_buy" class="listbuy">
+                        <partial name="~/Views/Common/Partial/_ListProduct.cshtml" model="@Model.ListBuy" />
+                    </ul>
+                    @if (totalBuy > (Model.PageIndexBuy + 1) * Model.PageSizeBuy)
+                    {
+                        <a href="javascript:viewMoreProduct('@((int)ProductType.Buy)')" class="btn-readmore arrowB"><span>Xem thêm @(totalBuy - (Model.PageIndexBuy + 1) * Model.PageSizeBuy) sản phẩm chào mua </span></a>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+}
+

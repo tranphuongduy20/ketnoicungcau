@@ -1,0 +1,18 @@
+﻿@using ketnoicungcau.business
+@model ketnoicungcau.vn.ViewModels.vmProductDetail
+
+@if (Model.Product.Ishideprice == 1)
+{
+    <p class="info-price">Giá thỏa thuận</p>
+}
+else if (Model.ListPrices != null && Model.ListPrices.Any())
+{
+    <ul class="list-price">
+        @foreach(var item in Model.ListPrices) {
+           <li>
+               <p>@item.Price.ToCurrencyV2()</p>
+               <span>@(item.BeginQuantity.ToString() + " - " + item.EndQuantity.ToString() + " " + item.Unit)</span>
+           </li>
+        }
+    </ul>   
+}

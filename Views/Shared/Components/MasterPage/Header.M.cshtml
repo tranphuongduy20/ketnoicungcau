@@ -1,0 +1,145 @@
+﻿@using ketnoicungcau.vn.ViewComponents
+<div class="bgcover-full"></div>
+<div class="preloader">
+    <div class="loaderweb"></div>
+</div>
+<!-- Header -->
+<header>
+    <a href="/" class="header-logo">
+        <i class="icon-logo"></i>
+    </a>
+    <form class="header-search">
+        <input type="text" placeholder="Tìm sản phẩm, dịch vụ...">
+        <div class="clear-search">
+            <i class="icon-clear-search"></i>
+        </div>
+        <button type="submit" class="submit-search">
+            <i class="icon-search"></i>
+        </button>
+        <div class="search-delete">
+            <i class="icon-delete"></i>
+        </div>
+    </form>
+    <div class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!--Menu-->
+    @await Component.InvokeAsync("Menu", new MenuViewComponent.ReqMenu { IsMobile = true })
+    <!--/Menu-->
+    <!--Search show-->
+    <div class="search-show">
+        <div class="history-txt">
+            <p class="txt">Có phải bạn muốn tìm</p>
+            <p>Hạt điều</p>
+            <p>Hạt điều rang muối</p>
+            <p>Hạt điều tách vỏ</p>
+        </div>
+        <div class="search-main">
+            <div class="search-item">
+                <p class="search-txt">Sản phẩm chào bán</p>
+                <ul class="search-product">
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search01.png" alt="Bánh kẹo Hải Châu">
+                            </div>
+                            <div class="ct">
+                                <h3 class="txt-name">Bánh kẹo Hải Châu</h3>
+                                <p class="txt-cpn">HTX TM DV nông nghiệp Như Hoàng</p>
+                                <p class="txt-price">500.000đ - 700.000đ/kg</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search02.png" alt="Trứng gà ba huân">
+                            </div>
+                            <div class="ct">
+                                <h3 class="txt-name">Trứng gà ba huân</h3>
+                                <p class="txt-cpn">HTX TM DV nông nghiệp Như Hoàng</p>
+                                <p class="txt-price">500.000đ - 700.000đ/kg</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-item">
+                <p class="search-txt">Sản phẩm chào mua</p>
+                <ul class="search-buy">
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search03.png" alt="HTX TM DV nông nghiệp Như Hoàng">
+                            </div>
+                            <div class="ct">
+                                <p class="txt01">Cần tìm đối tác cung cấp: Trứng gà công Cần tìm đối tác cung cấp: Trứng gà công ...</p>
+                                <p class="txt02">HTX TM DV nông nghiệp Như Hoàng</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search04.png" alt="Cần tìm đối tác cung cấp: Trứng gà công ...">
+                            </div>
+                            <div class="ct">
+                                <p class="txt01">Cần tìm đối tác cung cấp: Trứng gà công ...</p>
+                                <p class="txt02">HTX TM DV nông nghiệp Như Hoàng</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-item">
+                <p class="search-txt">Doanh nghiệp</p>
+                <ul class="search-company">
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search05.png" alt="HTX TM DV nông nghiệp Như Hoàng">
+                            </div>
+                            <div class="ct">
+                                <h3 class="txt-title">HTX TM DV nông nghiệp Như Hoàng</h3>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img">
+                                <img src="./images/img_search06.png" alt="Công ty TNHH MTV Sản Xuất Thương Mại và Dịch Vụ Thắng Lợi RS">
+                            </div>
+                            <div class="ct">
+                                <h3 class="txt-title">Công ty TNHH MTV Sản Xuất Thương Mại và Dịch Vụ Thắng Lợi RS</h3>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Search show-->
+    <!-- Popup thông -->
+    <div class="bgsend-overlay"></div>
+        <div class="popup-send">
+            <p class="noti"></p>
+            <p class="txt"></p>
+        <div class="close-send">ĐÓNG</div>
+    </div>
+    <!-- Popup thông báo -->
+</header>
+<!-- / Header -->
+<!-- Forgot password-->
+@await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxForgotPassword.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxSubmitForgotPassword.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxForgotPasswordByTax.M.cshtml")
+<div class="successtax">
+    <p class="txt-noti"><i class="icon-connectioned"></i></p>
+    <p class="txt-noti">Hoàn tất gửi thông tin để lấy lại mật khẩu</p>
+    <p class="txt">Bạn đã hoàn tất việc lấy lại mật khẩu thông qua tải lên giấy phép kinh doanh. Thông tin mật khẩu mới <b>sẽ được gửi về email</b> sau khi ban quản trị duyệt.</p>
+    <a href="/" class="close-connection">TRỞ VỀ TRANG CHỦ</a>
+</div>
+<!-- Forgot password-->

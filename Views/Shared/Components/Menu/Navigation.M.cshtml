@@ -1,0 +1,25 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.Menu>
+
+@{
+    if (Model != null)
+    { 
+        <li class="boxitem">
+            @{foreach (var item in Model)
+                {
+                    if (item.IsActived == 1)
+                    {
+                        if (item.Name == "Tin tức")
+                        {
+                            <a href="/tin-tuc">@item.Name</a>
+                        }
+                        else
+                        {
+                            <a href="@item.Url">@item.Name</a>
+                        }
+                    }
+                }
+
+            }
+        </li>
+    }
+}

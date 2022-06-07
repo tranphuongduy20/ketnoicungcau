@@ -1,0 +1,32 @@
+﻿@model ketnoicungcau.business.Model.News
+@using ketnoicungcau.business.Extensions
+
+@if (Model.Isactived == 1)
+{
+    if (Model.Newstype == 2)
+    {
+        <a href="@Model.GenNewsUrl()" class="item">
+            <div class="img img-hasvideo">
+                <img src="@Model.Video" alt="@Model.Title">
+                <i class="icon-video"></i>
+            </div>
+            <p>
+                @Model.Title
+            </p>
+        </a>
+    }
+    else
+    {
+        <a href="@Model.GenNewsUrl()" class="item">
+            <div class="img">
+                <img src="@Model.Image" alt="@Model.Title">
+            </div>
+            <p>
+                @Model.Title
+            </p>
+        </a>
+    }
+}
+
+
+

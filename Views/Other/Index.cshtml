@@ -1,0 +1,51 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmNewsDetail
+
+@{
+    var title = Model.News.Title;
+    ViewData["Title"] = title + " - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = title + " - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    @if (true) // check not production
+    {
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/other.min.css">
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/Category/owl.carousel.css">
+    }
+}
+@section Scripts
+{
+    <script src="~/Contents/js/bundle/news.detail.min.js?v=@rnd"></script>
+    <script src="~/Contents/lib/OwlCarousel2/owl.carousel.min.js?v=@rnd"></script>
+}
+
+
+@if (Model != null)
+{
+    <div class="blog">
+        <div class="box-blog">
+            @if (Model.News != null)
+            {
+                <div class="blog__detail">
+                    <h1>@Model.News.Title</h1>
+                    <div class="content">
+                        @Html.Raw(Model.News.Content)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,67 @@
+﻿@using ketnoicungcau.business.Helpers.Interface
+@inject IUserHelpers _userHelpers;
+@{
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+    var isLogin = false;
+    var CountDeals = 0;
+    if (currentUser != null && currentUser.Companyid > 0)
+    {
+        isLogin = true;
+        CountDeals = await _userHelpers.GetNumberNotifyDeals(currentUser.Companyid);
+    }
+}
+
+@{
+    if (isLogin)
+    {
+        <div class="boxitem boxitem-login">
+            <img src="@currentUser?.Logosrc" width="30" height="30">
+            @{
+                var taxId = @currentUser?.Taxid?.Insert(3, " ").Insert(7, " ");
+            }
+            <a href="#" class="show-nameprofile" data-companyid="@currentUser.Companyid">@taxId</a>
+            <div class="show-profile">
+                <ul class="show-profile-wrap">
+                    <li><a href="~/profile" class="item">Thông tin tài khoản</a></li>
+                    <li><a href="~/doi-mat-khau" class="item">Đổi mật khẩu</a></li>
+                    <li><a href="~/mywork" class="item">Kết nối của tôi <strong class="number" @(CountDeals > 0 ? "" : "style=display:none;")>@CountDeals</strong></a></li>
+                    <li><a href="~/productlist?type=2" class="item">Sản phẩm chào bán</a></li>
+                    <li><a href="~/productlist?type=1" class="item">Sản phẩm chào mua</a></li>
+                    <li><a href="~/addproduct?type=2" class="item">Đăng sản phẩm chào bán</a></li>
+                    <li><a href="~/addproduct?type=1" class="item">Đăng sản phẩm chào mua</a></li>
+                    <li><a href="~/logout" class="item">Thoát</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="boxitem boxitem-user">
+            <i class="icon-user"></i>
+            Đăng nhập/ Đăng ký
+            <div class="show-login">
+                <form class="show-login-wrap">
+                    @Html.AntiForgeryToken()
+                    <div class="item">
+                        <p>Mã số thuế</p>
+                        <input type="number" pattern="\d*" name="Taxid" id="Taxid-login">
+                    </div>
+                    <div class="item">
+                        <p>Mật khẩu</p>
+                        <input type="password" name="Password" id="Password-login" oninput="MaxLength(this)" maxlength="20">
+                    </div>
+                    <div class="error-general" style="display: none"></div>
+                    <a class="forgot-password">Quên mật khẩu</a>
+                    <div class="boxcaptcha">
+                        <div class="g-recaptcha" data-sitekey="@(ketnoicungcau.business.Helpers.ConfigConstants.SiteKeyCaptcha)"></div>
+                    </div>
+                    <button type="submit" class="btn-login">ĐĂNG NHẬP</button>
+                    <div class="logindiv">
+                        <p>Bạn chưa có tài khoản?</p>
+                        <a href="/dang-ky">Đăng ký mới tại đây</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+}

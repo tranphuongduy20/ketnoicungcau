@@ -1,0 +1,20 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.CompanyWeb>
+@using ketnoicungcau.business.Extensions
+
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <li class="item" data-companyid="@item.Companyid">
+                <a href="@item.GenCompanyUrl()">
+                    <div class="img">
+                        <img src="@item.Logosrc" alt="@item.Companyname">
+                    </div>
+                    <p class="txt">@item.Companyname</p>
+                </a>
+            </li>
+
+        }
+    }
+}

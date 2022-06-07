@@ -1,0 +1,31 @@
+﻿@model ketnoicungcau.business.ModelWeb.ProductWeb
+@{
+    if (string.IsNullOrEmpty(Model.Description) == false)
+    {
+        <div class="detail-content">
+            @Html.Raw(Model.Description.Replace("../","/cms/"))
+
+        @*    <h4>Thị trường hiện hữu</h4>
+            <ul>
+                <li>Trong nước</li>
+                <li>Châu Âu</li>
+                <li>Nhật</li>
+            </ul>
+            <h4>Khả năng giao hàng</h4>
+            <ul>
+                <li>5.000 tấn/ tháng</li>
+            </ul>
+            <h4>Thông tin sản phẩm</h4>
+            <p>Hạt điều rang muối vỏ lụa Bình Phước loại 1 có nhiều mức giá trên thị trường. Hạt điều ở trong các siêu thị, cửa hàng tiện lợi luôn có mức giá cao hơn so với các điểm bán ở ngoài. Do vậy, để mua được hạt điều vỏ lụa Bình Phước ngon, giá tốt, bạn hãy đến với Shop Hạt Ngon – nơi cung cấp quà tặng các loại hạt điều, hạt sen, hạt chia, hạnh nhân, macca, óc chó, trà, caccao chất lượng cao.</p>
+            <p>Việt Nam là nước xuất khẩu Hạt Điều đứng đầu thế giới, người nước ngoài rất ưa chuộng hạt điều ngon Việt Nam. Tuy nhiên ở trong nước hầu hết mọi người xem hạt điều như một thức ăn vặt thay vì là một thực phẩm có giá trị dinh dưỡng cao. Câu hỏi đặt ra là: “Liệu có thể sử dụng hạt điều vỏ lụa như một loại thực phẩm chuyên biệt có giá trị dinh dưỡng cao dành cho các đối tượng sử dụng khác nhau hay không?”</p>
+            <img src="~/images/img_detail01.png" alt="test">
+            <p>Ở Việt Nam, cây điều được trồng ở bốn vùng chủ yếu là: Ðông Nam Bộ, Tây Nguyên, duyên hải Trung Bộ và đồng bằng sông Cửu Long, trong đó có khu vực chủ lực là tỉnh Bình Phước thủ phủ Điều của Việt Nam.</p>
+            <p>Nhiều nghiên cứu khoa học chứng minh giá trị dinh dưỡng của hạt điều không chỉ là cung cấp năng lượng, các chất dinh dưỡng thông thường mà còn có thể hỗ trợ phòng ngừa một số bệnh lý, nâng cao sức khỏe.
+            <br>Hạt điều là một thực phẩm có giá trị dinh dưỡng cao. Thành phần dinh dưỡng chính của hạt điều bao gồm protein, lipid, carbohydrate, nhiều chất khoáng quan trọng như phospho, magie, calcium, kali, sắt… Hạt điều rang muối vỏ lụa Bình Phước giàu năng lượng hơn hẳn các thực phẩm khác như ngũ cốc, thịt cá.</p>
+            <p>Việt Nam là nước xuất khẩu Hạt Điều đứng đầu thế giới, người nước ngoài rất ưa chuộng hạt điều ngon Việt Nam. Tuy nhiên ở trong nước hầu hết mọi người xem hạt điều như một thức ăn vặt thay vì là một thực phẩm có giá trị dinh dưỡng cao. Câu hỏi đặt ra là: “Liệu có thể sử dụng hạt điều vỏ lụa như một loại thực phẩm chuyên biệt có giá trị dinh dưỡng cao dành cho các đối tượng sử dụng khác nhau hay không?”</p>*@
+        </div>
+        <div style="text-align: center; display: none;">
+            <a class="readmore">Xem thêm</a>
+        </div>
+    }
+}

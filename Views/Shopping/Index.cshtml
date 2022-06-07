@@ -1,0 +1,85 @@
+@using ketnoicungcau.business.Extensions
+@model ketnoicungcau.vn.ViewModels.vmWebsite
+@{
+    ViewData["Title"] = "Danh sách website mua sắm trực tuyến";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Danh sách website mua sắm trực tuyến",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    @if (true)
+    {
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/shopping.min.css?v=@rnd">
+    }
+}
+
+<section>
+    <div class="boxwrap">
+        @if (Model.categoryWebsites != null && Model.categoryWebsites.Any())
+        {
+            <div class="block">
+                <h2 class="block__title">Sản phẩm tiêu dùng</h2>
+                <ul class="listonline">
+                    @foreach (var item in Model?.categoryWebsites?.FirstOrDefault(c => c.CateId == 176)?.websites)
+                    {
+                        <li class="item">
+                            <a href="@item.Url" target="_blank">
+                                <div class="img">
+                                    <img src="@item.Logo" alt="@item.Sitename">
+                                </div>
+                                <h3>@item.Sitename</h3>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <a href="/mua-sam-online/san-pham-tieu-dung" class="btn-readmore arrowR"><span>Xem tất cả web sản phẩm tiêu dùng</span></a>
+            </div>
+            <div class="block">
+                <h2 class="block__title">Dịch vụ thương mại</h2>
+                <ul class="listonline">
+                    @foreach (var item in Model?.categoryWebsites?.FirstOrDefault(c => c.CateId == 175)?.websites)
+                    {
+                        <li class="item">
+                            <a href="@item.Url" target="_blank">
+                                <div class="img">
+                                    <img src="@item.Logo" alt="@item.Sitename">
+                                </div>
+                                <h3>@item.Sitename</h3>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <a href="/mua-sam-online/dich-vu-thuong-mai" class="btn-readmore arrowR"><span>Xem tất cả web dịch vụ thương mại</span></a>
+            </div>
+            <div class="block">
+                <h2 class="block__title">Hợp tác kinh doanh, chuyển giao công nghệ</h2>
+                <ul class="listonline">
+                    @foreach (var item in Model?.categoryWebsites?.FirstOrDefault(c => c.CateId == 174)?.websites)
+                    {
+                        <li class="item">
+                            <a href="@item.Url" target="_blank">
+                                <div class="img">
+                                    <img src="@item.Logo" alt="@item.Sitename">
+                                </div>
+                                <h3>@item.Sitename</h3>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <a href="/mua-sam-online/hop-tac-kinh-doanh" class="btn-readmore arrowR nowidth"><span>Xem tất cả web hợp tác kinh doanh, chuyển giao công nghệ</span></a>
+            </div>
+        }
+    </div>
+</section>

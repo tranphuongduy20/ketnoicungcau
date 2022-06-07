@@ -1,0 +1,13 @@
+﻿@model List<ketnoicungcau.business.Model.Website>
+
+@foreach (var item in Model)
+ {
+     <li class="item">
+         <a href="@item.Url" target="_blank">
+             <div class="img">
+                 <img src="@item.Logo" alt="@item.Sitename">
+             </div>
+             <h3>@item.Sitename</h3>
+         </a>
+     </li>
+ }

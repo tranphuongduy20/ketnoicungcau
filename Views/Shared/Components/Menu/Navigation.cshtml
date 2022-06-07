@@ -1,0 +1,40 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.Menu>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        <ul class="list-menu">
+            @{foreach (var root in Model)
+                {
+                    if (root.IsActived == 1)
+                    {
+                        if (root.ChildMenus != null && root.ChildMenus.Any())
+                        {
+                            <li class="hassub">
+                                <a href="~/@root.Url" class="arrow">@root.Name</a>
+                                <div class="submenu-row">
+                                    <ul class="submenu-row-wrap">
+                                        @{
+                                            foreach (var sub in root.ChildMenus)
+                                            {
+                                                if (sub.IsActived == 1)
+                                                {
+                                                    <li><a href="~/tin-tuc/@sub.Url">@sub.Name</a></li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="~/@root.Url">@root.Name</a></li>
+                        }
+                    }
+                }
+
+            }
+        </ul>
+    }
+}

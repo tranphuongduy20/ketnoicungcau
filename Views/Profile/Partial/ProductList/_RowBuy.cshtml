@@ -1,0 +1,118 @@
+﻿@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.business
+@model ketnoicungcau.business.ModelWeb.ProductWeb
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+@{
+    if (_workContext.IsMobile)
+    {
+        <div class="item-products" data-productid="@Model.Productid">
+            <div class="img-product">
+                @{
+                    string imgSrc = "/images/noimg-product.png";
+                    if (Model.Images != null && Model.Images.Any())
+                    {
+                        imgSrc = Model.Images.FirstOrDefault()?.Image;
+                    }
+                }
+                <img src="@imgSrc" alt="@Model?.Productname">
+            </div>
+            <div class="info-product">
+                <div class="field-products">
+                    <span>ID</span>
+                    <span style="padding-left: 4px; color: #000">#15621</span>
+                </div>
+                <span>
+                    <a data-companyid="@Model?.Productid" href="@Model?.GenProductUrl()">@Model?.Productname</a>
+                </span>
+                @if (Model.Begindate != null & Model.Begindate != DateTime.MinValue)
+                {
+                    <span><b>Thời gian mua: </b>@Model.Begindate?.ToString("dd/MM/yyyy")</span>
+                }
+                @if (string.IsNullOrEmpty(Model.DemandFull) == false)
+                {
+                    <span><b>Nhu cầu: </b>@Model.DemandFull</span>
+                }
+                @if (Model.CreatedDate != null)
+                {
+                    var format = "HH:mm dd/MM/yyyy";
+                    var date = Model.CreatedDate.Value.ToString(format);
+                    <span>@date</span>
+                }
+                <div class="field-products">
+                    <span style="margin-right: 40px">
+                        <a href="/addproduct?type=1&id=@Model.Productid" class="click-edit">Sửa thông tin</a>
+                    </span>
+                    <span style="padding-right: 10px; margin-right: 40px">
+                        <a data-id="@Model.Productid" href="javascript:;" class="click-del">Xóa</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+<tr>
+    <td>
+        <span style="padding-left: 10px;">#@Model?.Productid</span>
+    </td>
+    <td>
+        <div class="control-item control-item-checkbox">
+            <div class="group" style="text-align: center;">
+                <label class="switch">
+                    <input onchange="ActiveSwitch(this)" type="checkbox" data-id="@Model.Productid" name="" @(Model.Isactived == 1 ? "checked" : "")>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </td>
+    <td>
+        <span class="name-info">
+            <div class="img-product">
+                @{
+                    string imgSrc = "/images/noimg-product.png";
+                    if (Model.Images != null && Model.Images.Any())
+                    {
+                        imgSrc = Model.Images.FirstOrDefault()?.Image;
+                    }
+                }
+                <img src="@imgSrc" alt="@Model?.Productname">
+            </div>
+            <a href="@Model?.GenProductUrl()">@Model?.Productname</a>
+        </span>
+    </td>
+
+    <td>
+        <span>
+            @{
+                if (Model.Begindate != null && Model.Begindate != DateTime.MinValue)
+                {
+                    @Model.Begindate?.ToString("dd/MM/yyyy")
+                }
+            }
+        </span>
+    </td>
+    <td>
+        @if (Model.CreatedDate != null)
+        {
+            var format = "HH:mm dd/MM/yyyy";
+            var date = Model.CreatedDate.Value.ToString(format);
+            <span>@date</span>
+        }
+    </td>
+    <td>
+        <span>@Model?.DemandFull</span>
+    </td>
+    <td style="text-align: center;">
+        <span style="padding-left: 25px;">
+            <a href="/addproduct?type=1&id=@Model.Productid" class="click-edit">Sửa</a>
+        </span>
+    </td>
+    <td style="text-align: center;">
+        <span style="padding-right: 10px;">
+            <a data-id="@Model.Productid" href="javascript:;" class="click-del">Xóa</a>
+        </span>
+    </td>
+</tr>
+    }
+}

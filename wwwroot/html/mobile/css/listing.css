@@ -1,0 +1,374 @@
+/*----------- Listproduct ----------*/
+.listproduct {
+    column-gap: 6px;
+    display: grid;
+    grid-auto-rows: minmax(min-content,max-content);
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    padding: 0 7px;
+    row-gap: 10px;
+}
+.listproduct .item {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    transition: .3s;
+}
+.listproduct .item a {
+    display: block;
+}
+.listproduct .content {
+    margin-top: 10px;
+    padding: 0 8px 10px;
+}
+.listproduct img {
+    max-width: 100%;
+    width: 100%;
+}
+.listproduct .txt-company {
+    color: #666;
+    font-size: 12px;
+    line-height: 20px;
+}
+.listproduct .txt-name {
+  font-size: 12px;
+  line-height: 17px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+.listproduct .txt-weight {
+    color: #3A3A3F;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-top: 2px;
+}
+.listproduct .txt-note {
+    color: #666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*----------- / Listproduct ----------*/
+
+
+/*----------- List company ----------*/
+.listcompany {
+    column-gap: 6px;
+    display: grid;
+    grid-auto-rows: minmax(min-content,max-content);
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    row-gap: 10px;
+    padding: 0 7px;
+}
+.listcompany .item {
+    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    transition: .3s;
+}
+.listcompany .img img {
+    border-radius: 8px;
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 185px;
+}
+.listcompany .txt {
+    color: #000;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 10px 8px 30px 8px;
+    text-transform: uppercase;
+}
+/*----------- / List company ----------*/
+
+
+/*----------- Listbuy ----------*/
+.listbuy {
+    padding: 0 9px;
+}
+.listbuy li {
+    margin-bottom: 10px;
+}
+.listbuy .item a {
+    border: 1px solid #E5E5E5;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    display: flex;
+    padding: 10px 10px 20px;
+    transition: .3s;
+}
+.listbuy .item .img {
+    width: 80px;
+}
+.listbuy .item img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+}
+.listbuy .item .content {
+    padding-left: 10px;
+    width: calc(100% - 80px);
+}
+.listbuy .txt-company {
+    color: #444;
+    font-size: 12px;
+    line-height: 20px;
+}
+.listbuy .txt-title {
+    color: #1C4D87;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    margin-top: 6px;
+}
+.listbuy .txt-painted {
+    color: #444;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 12px;
+    line-height: 17px;
+    margin-top: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.listbuy .txt-demand {
+    color: #444;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 6px;
+}
+.listbuy .txt-demand span {
+    color: #000;
+    margin-left: 5px;
+}
+.listbuy .txt-time {
+    color: #444;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 6px;
+}
+.listbuy .txt-time span {
+    color: #000;
+    margin-left: 5px;
+}
+/*----------- / Listbuy ----------*/
+
+/*----------- Listing kết quả tìm kiếm ----------*/
+.txt-showsearch {
+    background-color: #F8F8F8;
+    padding: 35px 0;
+}
+.txt-showsearch p {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 27px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+.tab-search {
+    padding-bottom: 90px;
+}
+.tab-search .btn-readmore {
+    margin-top: 40px;
+}
+.tab-search .listproduct {
+    margin-top: 30px;
+}
+.tab-search .listbuy {
+    margin-top: 25px;
+}
+.tab-search .listcompany {
+    margin-top: 45px;
+}
+/*----------- / Listing kết quả tìm kiếm ----------*/
+
+
+/*----------- Listing Doanh nghiệp ----------*/
+.listing-company {
+  padding-bottom: 40px;
+}
+.listing-company .number-show {
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 27px;
+  margin-top: 35px;
+}
+.listing-company .quicklink {
+  margin-top: 20px;
+}
+.listing-company .listcompany {
+  margin-top: 20px;
+}
+.listing-company .btn-readmore {
+  margin-top: 40px;
+}
+/*----------- Listing Doanh nghiệp ----------*/
+
+
+
+/*----------- Listing theo Danh mục ----------*/
+.listing-cat {
+    padding-bottom: 40px;
+}
+.listing-cat-banner {
+  background-color: #F8F8F8;
+  padding: 20px 0 35px;
+}
+.listing-cat .box-common {
+  margin-top: 30px;
+}
+.listing-cat .number {
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 21px;
+    margin-top: 20px;
+}
+.listing-cat .listproduct {
+    margin-top: 20px;
+}
+.listing-cat .listbuy {
+    margin-top: 20px;
+}
+.listing-cat .btn-readmore {
+    margin-top: 25px;
+}
+/*----------- / Listing theo Danh mục ----------*/
+
+
+/*----------- BoxCommon filter và sort ----------*/
+.box-common {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.filter {
+    display: flex;
+}
+.filter__item {
+    margin-right: 10px;
+}
+.filter-txt{
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 30px 10px 10px;
+    position: relative;
+}
+.filter-txt::before {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #222;
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 3px);
+}
+.filter-main {
+    display: none;
+}
+.sort {
+    position: relative;
+}
+.sort .click-sort {
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 4px 0 4px 10px;
+}
+.sort .sort-show {
+    padding-right: 30px;
+    position: relative;
+}
+.sort .sort-show::before {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #333;
+    content: '';
+    position: absolute;
+    top: calc(50% - 3px);
+    right: 12px;
+}
+.sort-main {
+    background-color: #FFF;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0, 0.2);
+    display: none;
+    position: absolute;
+    padding: 0 7px;
+    top: 30px;
+    right: 0;
+    width: 160px;
+    z-index: 2;
+}
+.sort-main.active {
+    display: block;
+}
+.sort-main p {
+    border-bottom: 1px solid #F1F1F1;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 11px 3px;
+}
+.sort-main p.selected i {
+    margin-right: 10px;
+}
+/*----------- / BoxCommon filter và sort ----------*/
+
+
+/*----------- Search không có kết quả ----------*/
+.noti-search {
+    color: #000;
+    margin: 0 auto;
+    padding: 40px 20px 160px;
+    text-align: center;
+}
+.noti-search .txt01 {
+    font-size: 18px;
+    line-height: 25px;
+    margin-top: 20px;
+}
+.noti-search .txt01 strong {
+    font-weight: bold;
+}
+.noti-search .txt02 {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 20px;
+}
+.noti-search ul li {
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    padding-left: 20px;
+}
+.noti-search ul {
+    max-width: 360px;
+    margin: 5px auto 0;
+    text-align: left;
+}
+.noti-search ul li::before {
+    background-color: #000;
+    border-radius: 50%;
+    content: '';
+    height: 4px;
+    left: 3px;
+    position: absolute;
+    top: 9px;
+    width: 4px;
+}
+/*----------- / Search không có kết quả ----------*/

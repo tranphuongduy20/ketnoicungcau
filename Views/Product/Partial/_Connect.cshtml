@@ -1,0 +1,44 @@
+﻿@using ketnoicungcau.business.Enums
+@model ketnoicungcau.vn.ViewModels.vmProductDetail
+
+@{
+    // Chưa đăng nhập
+    if (Model.UserCompany == null || Model.UserCompany.Companyid <= 0)
+    {
+        <a class="btn-connection connect"><span>Kết nối với doanh nghiệp này</span></a>
+    }
+    // Đã đăng nhập
+    else if (Model.Product.Company.Companyid == Model.UserCompany.Companyid)
+    {
+        Console.WriteLine(Model.Product.Company.Companyid);
+        Console.WriteLine(Model.UserCompany.Companyid);
+        Console.WriteLine("Không hiện connect vì sản phẩm là sản phẩm của doanh nghiệp đang đăng nhập");
+        //Nếu sản phẩm là sản phẩm của user đang đăng nhập thì không hiện nút kết nối
+    }
+    else
+    {
+        // Chưa gửi
+        if (Model.Deal == null || Model.Deal.Dealsid <= 0)
+        {
+            <a class="btn-connection connect"><span>Kết nối với doanh nghiệp này</span></a>
+        } // Từ chối
+        else if (Model.Deal.Dealstatus == (int)StatusDeals.Deny || Model.Deal.Dealstatus == (int)StatusDeals.Cancel) {
+            <a class="btn-connection connect"><span>Kết nối với doanh nghiệp này</span></a>
+        } // Đồng ý
+        else if (Model.Deal.Dealstatus == (int)StatusDeals.Accept) {
+             <a class="btn-connection acpt"><span>Đã kết nối với doanh nghiệp này</span></a>
+        } // Đang chờ
+        else if (Model.Deal.Dealstatus == (int)StatusDeals.Waiting) {
+             <a class="btn-connection sent"><span>Đã gửi kết nối, đang chờ phản hồi</span></a>
+        }
+    }
+}
+<!-- Popup kết nối doanh nghiệp -->
+<div class="bgconnection-overlay"></div>
+<div class="popup-connection">
+    <p class="txt-noti"><i class="icon-connectioned"></i>ĐÃ KẾT NỐI DOANH NGHIỆP</p>
+    <p class="txt">Bạn đã hoàn tất kết nối.<br>
+        Vui lòng đợi phản hồi từ doanh nghiệp để nhận thông tin kết nối.</p>
+    <a href="javascript:void(0);" class="close-connection">Đóng</a>
+</div>
+<!-- /Popup kết nối doanh nghiệp -->

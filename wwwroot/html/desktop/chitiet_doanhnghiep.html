@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>Chi tiết doanh nghiệp</title>
+  <link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="./css/global.css">
+  <link rel="stylesheet" type="text/css" href="./css/chitiet_doanhnghiep.css">
+  <link rel="stylesheet" type="text/css" href="./css/listing.css">
+</head>
+<body>
+	<!-- Header -->
+  <header>
+    <p class="header-text">SỞ CÔNG THƯƠNG THÀNH PHỐ HỒ CHÍ MINH - WEBSITE KẾT NỐI CUNG CẦU </p>
+    <section>
+      <div class="header-main clearfix">
+        <a href="#" class="header-logo">
+          <i class="icon-logo"></i>
+        </a>
+        <form class="header-search">
+          <input type="text" placeholder="Tìm sản phẩm, nhà cung cấp...">
+          <button type="submit" class="submit-search">
+            <i class="icon-search"></i>
+          </button>
+
+          <!--Search show-->
+          <div class="search-show">
+            <div class="history-txt">
+              <p class="txt">Có phải bạn muốn tìm</p>
+              <p>Hạt điều</p>
+              <p>Hạt điều rang muối</p>
+              <p>Hạt điều tách vỏ</p>
+            </div>
+            <div class="search-main">
+              <div class="search-item">
+                <p class="search-txt">Sản phẩm chào bán</p>
+                <ul class="search-product">
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search01.png" alt="Bánh kẹo Hải Châu">
+                      </div>
+                      <div class="ct">
+                        <h3 class="txt-name">Bánh kẹo Hải Châu</h3>
+                        <p class="txt-cpn">HTX TM DV nông nghiệp Như Hoàng</p>
+                        <p class="txt-price">500.000đ - 700.000đ/kg</p>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search02.png" alt="Trứng gà ba huân">
+                      </div>
+                      <div class="ct">
+                        <h3 class="txt-name">Trứng gà ba huân</h3>
+                        <p class="txt-cpn">HTX TM DV nông nghiệp Như Hoàng</p>
+                        <p class="txt-price">500.000đ - 700.000đ/kg</p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="search-item">
+                <p class="search-txt">Sản phẩm chào mua</p>
+                <ul class="search-buy">
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search03.png" alt="HTX TM DV nông nghiệp Như Hoàng">
+                      </div>
+                      <div class="ct">
+                        <p class="txt01">Cần tìm đối tác cung cấp: Trứng gà công Cần tìm đối tác cung cấp: Trứng gà công ...</p>
+                        <p class="txt02">HTX TM DV nông nghiệp Như Hoàng</p>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search04.png" alt="Cần tìm đối tác cung cấp: Trứng gà công ...">
+                      </div>
+                      <div class="ct">
+                        <p class="txt01">Cần tìm đối tác cung cấp: Trứng gà công ...</p>
+                        <p class="txt02">HTX TM DV nông nghiệp Như Hoàng</p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="search-item">
+                <p class="search-txt">Doanh nghiệp</p>
+                <ul class="search-company">
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search05.png" alt="HTX TM DV nông nghiệp Như Hoàng">
+                      </div>
+                      <div class="ct">
+                        <h3 class="txt-title">HTX TM DV nông nghiệp Như Hoàng</h3>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="img">
+                        <img src="./images/img_search06.png" alt="Công ty TNHH MTV Sản Xuất Thương Mại và Dịch Vụ Thắng Lợi RS">
+                      </div>
+                      <div class="ct">
+                        <h3 class="txt-title">Công ty TNHH MTV Sản Xuất Thương Mại và Dịch Vụ Thắng Lợi RS</h3>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--/Search show-->
+        </form>
+        <div class="header-box clearfix">
+          <a href="tel:(+848)38296322" class="boxitem boxitem-tel">
+            <i class="icon-tel"></i>
+            (+848) 3829 6322
+          </a>
+          <div class="boxitem boxitem-user">
+            <i class="icon-user"></i>
+            Đăng nhập/Đăng ký
+            <div class="show-login">
+              <div class="show-login-wrap">
+                <div class="item">
+                  <p>Mã số thuế</p>
+                  <input type="text" name="number" id="number">
+                </div>
+                <div class="item">
+                  <p>Mật khẩu</p>
+                  <input type="text" name="password" id="password">
+                </div>
+                <a href="#" class="forgot-password">Quên mật khẩu</a>
+                <button type="submit" class="btn-login">ĐĂNG NHẬP</button>
+                <div class="logindiv">
+                  <p>Bạn chưa có tài khoản?</p>
+                  <a href="dangkymoi.html">Đăng ký mới tại đây</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-menu">
+        <div class="menu-category">
+          <div class="menu-category-hd">
+            <div>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            Danh mục
+          </div>
+          <div class="wrap-menushow">
+            <nav class="list-catmenu">
+              <ul>
+                <li><a href="#"><span>Thịt cá, hải sản</span></a></li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Rau, củ, trái cây</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">item</a></li>
+                    <li><a href="#">item</a></li>
+                    <li><a href="#">item</a></li>
+                    <li><a href="#">item</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Đồ uống các loại</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">item 04</a></li>
+                    <li><a href="#">item 04</a></li>
+                    <li><a href="#">item 04</a></li>
+                    <li><a href="#">item 04</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Sữa uống các loại</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">Sữa tươi các loại</a></li>
+                    <li><a href="#">Sữa tươi các loại</a></li>
+                    <li><a href="#">Sữa hạt, sữa đậu</a></li>
+                    <li><a href="#">Sữa hạt, sữa đậu</a></li>
+                    <li><a href="#">Sữa đặc các loại</a></li>
+                    <li><a href="#">Sữa đặc các loại</a></li>
+                    <li><a href="#">Sữa chua uống liền</a></li>
+                    <li><a href="#">Sữa chua uống liền</a></li>
+                    <li><a href="#">Thức uống lúa mạch</a></li>
+                    <li><a href="#">Thức uống lúa mạch</a></li>
+                    <li><a href="#">Ngũ cốc, ca cao</a></li>
+                    <li><a href="#">Ngũ cốc, ca cao</a></li>
+                    <li><a href="#">Sữa bột các loại</a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><span>Bánh kẹo các loại</span></a></li>
+                <li><a href="#"><span>Mì, cháo, phở, bún</span></a></li>
+                <li><a href="#"><span>Dầu ăn, gia vị</span></a></li>
+                <li><a href="#"><span>Gạo, bột, đồ khô</span></a></li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Dịch vụ thương mại</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">item 01</a></li>
+                    <li><a href="#">item 01</a></li>
+                    <li><a href="#">item 01</a></li>
+                    <li><a href="#">item 01</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Hợp tác kinh doanh</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">item 02</a></li>
+                    <li><a href="#">item 02</a></li>
+                    <li><a href="#">item 02</a></li>
+                    <li><a href="#">item 02</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="arrow-submenu"><span>Khác</span></a>
+                  <ul class="sub-catmenu">
+                    <li><a href="#">item 03</a></li>
+                    <li><a href="#">item 03</a></li>
+                    <li><a href="#">item 03</a></li>
+                    <li><a href="#">item 03</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <ul class="list-menu">
+          <li><a href="#">Chào mua</a></li>
+          <li><a href="#">Chào bán</a></li>
+          <li><a href="#">Mua sắm online</a></li>
+          <li><a href="#">Doanh nghiệp</a></li>
+          <li class="hassub">
+            <a href="#" class="arrow">Tin tức</a>
+            <div class="submenu-row">
+              <ul class="submenu-row-wrap">
+                <li><a href="#">Tất cả</a></li>
+                <li><a href="#">Tin tức Sở Công Thương</a></li>
+                <li><a href="#">Sự kiện</a></li>
+                <li><a href="#">Thông báo</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="#">Hỏi đáp</a></li>
+          <li><a href="#">Liên hệ</a></li>
+        </ul>
+      </div>
+    </section>
+    
+  </header>
+  <!-- / Header -->
+  <section>
+    <div class="detail">
+      <div class="detail-top clearfix">
+        <div class="img">
+          <img src="./images/chitiet_doanhnghiep.png" alt="">
+        </div>
+        <div class="info">
+          <div class="info-cpn">
+            <h2>Thông tin doanh nghiệp</h2>
+            <p class="text-company">Công ty TNHH Liên Minh Xanh</p>
+            <p class="txt">MST: 342345454</p>
+            <p class="txt">Website: <a href="www.lienminhxanh.vn" target="_blank">www.lienminhxanh.vn</a></p>
+            <p class="txt">Hotline: <a href="tel:028565656">028 56 56 56</a></p>
+            <p class="txt">Email: <a href="mailto:info@lienminhxanh.vn">info@lienminhxanh.vn</a></p>
+            <p class="txt">Fanpage: <a href="www.lienminhxanh.vn" target="_blank">https://www.facebook.com/lienminhxanh</a></p>
+          </div>
+          <div class="info-people">
+            <h2>Thông tin người đại diện</h2>
+            <p class="txt">
+              <span>Họ và tên:</span>Đoàn Thị An Nhàn
+            </p>
+            <p class="txt">
+              <span>Chức vụ:</span>Tổng giám đốc
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content bg-hide">
+        <h2 class="intro-ttl">Giới thiệu doanh nghiệp</h2>
+        <p>Vào một ngày mùa đầu năm 2016, có hai người từng làm việc nhiều năm với các cộng đồng và các dự án phát triển cùng bàn cách làm thế nào để những cộng đồng dân tộc thiểu số ở Thừa Thiên Huế có thể có lợi ích nhiều hơn từ những cách rừng tự nhiên được Nhà nước giao cho họ quản lý.</p>
+        <h3>Tinh dầu cũng không phải là sản phẩm mới.</h3>
+        <p>Làm tinh dầu cũng không khó, nhân loại đã có hàng nghìn năm kinh nghiệm về việc chưng cất. Vì vậy, để có khách hàng, chúng tôi đặt ra hai nguyên tắc phải tuân thủ và sống chết với 2 nguyên tắc đó. Đó là chất lượng cao và tính độc đáo của sản phẩm. Với nguyên tắc đầu tiên, chúng tôi mất 6 tháng để làm và thử nghiệm hệ thống chưng cất, đúng  12 tháng cho việc thử nghiệm các loại nguyên liệu và quy trình sản xuất từ giống cây, vùng đất, quy trình canh tác, thời điểm thu hoạch, thời gian chưng cất, nhiệt độ, áp suất, tinh chế, kỹ thuật ép, lắng,… và vô số thứ khác như quy chuẩn sản phẩm, bao bì, mọi thứ đều phải tốt nhất cho người dùng.</p>
+        <div style="text-align: center;">
+          <a href="#" class="readmore">Xem thêm</a>
+        </div>
+      </div>
+    </div>
+    <div class="related">
+      <div class="block">
+        <h3>Sản phẩm chào bán</h3>
+        <ul class="listproduct">
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img01.png" alt="Trứng gà ba huân">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-name">Trứng gà ba huân</h3>
+                <p class="txt-weight">500.000đ - 700.000đ/kg</p>
+                <p class="txt-note">Hộp 10 trứng, đảm bảo VSATTP</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img02.png" alt="Rau củ quả Đà Lạt">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-name">Rau củ quả Đà Lạt</h3>
+                <p class="txt-weight">500.000đ - 700.000đ/kg</p>
+                <p class="txt-note">Khoảng 2 ~ 3 củ/kg, tiêu chuẩn VietGAP và hướng hữu cơ</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img03.png" alt="Sashimi Cá Hồi 500g">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-name">Sashimi Cá Hồi 500g</h3>
+                <p class="txt-note">Đóng hộp đảm bảo VSATTP, kèm sẵn đũa. Sử dụng trong ngày</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img04.png" alt="dâu tươi đà lạt lâm đồng">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-name">dâu tươi đà lạt lâm đồng</h3>
+                <p class="txt-weight">500.000đ - 700.000đ/kg</p>
+                <p class="txt-note">Đóng túi zip 500g</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img05.png" alt="cà chua đà lạt">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-name">cà chua đà lạt</h3>
+                <p class="txt-weight">500.000đ - 700.000đ/kg</p>
+                <p class="txt-note">Đóng túi zip 500g</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img06.png" alt="Bánh kẹo Hải Châu">
+              </div>
+              <div class="content">
+                <p class="txt-company">Công ty TNHH Bánh Kẹo Hải Châu</p>
+                <h3 class="txt-name">Bánh kẹo Hải Châu</h3>
+                <p class="txt-note">Đóng túi zip 500g</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img07.png" alt="vải thiều bắc giang">
+              </div>
+              <div class="content">
+                <p class="txt-company">Công ty TNHH Hương Nguyên</p>
+                <h3 class="txt-name">vải thiều bắc giang</h3>
+                <p class="txt-note">Đóng túi zip 500g</p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/img08.png" alt="Dịch vụ vận tải hửu nguyên vận chuyển hàng hóa">
+              </div>
+              <div class="content">
+                <p class="txt-company">Công ty vận tải NASCO Express</p>
+                <h3 class="txt-name">Dịch vụ vận tải hửu nguyên vận chuyển hàng hóa</h3>
+                <p class="txt-weight">30.000đ - 80.000đ/km</p>
+                <p class="txt-note">Xe tải 1,5 tấn, 3 tấn, 25 tấn, các loại xe vận tải liên tỉnhXe tải 1,5 tấn, 3 tấn, 25 tấn, các loại xe vận tải liên tỉnhXe tải 1,5 tấn, 3 tấn, 25 tấn, các loại xe vận tải liên tỉnh</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <a href="#" class="btn-readmore arrowB"><span>Xem thêm 36 sản phẩm chào bán </span></a>
+      </div>
+      <div class="block">
+        <h3>Sản phẩm chào mua</h3>
+        <ul class="listbuy">
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/buy01.png" alt="Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-title">Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn</h3>
+                <p class="txt-painted">Mô tả: 1.000 tấn/ năm, đạt tiêu chuẩn xuất khẩu, tại khu vực TP.HCM, Long An và Miền Tây Nam Bộ...</p>
+                <p class="txt-demand">Nhu cầu:<span>1 tấn/ tháng</span></p>
+                <p class="txt-time">Thời gian mua:<span>Q3/2021</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/buy02.png" alt="Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-title">Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn</h3>
+                <p class="txt-painted">Mô tả: 1.000 tấn/ năm, đạt tiêu chuẩn xuất khẩu, tại khu vực TP.HCM, Long An và Miền Tây Nam Bộ...</p>
+                <p class="txt-demand">Nhu cầu:<span>1 tấn/ tháng</span></p>
+                <p class="txt-time">Thời gian mua:<span>Q3/2021</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/buy03.png" alt="Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-title">Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn</h3>
+                <p class="txt-painted">Mô tả: 1.000 tấn/ năm, đạt tiêu chuẩn xuất khẩu, tại khu vực TP.HCM, Long An và Miền Tây Nam Bộ...</p>
+                <p class="txt-demand">Nhu cầu:<span>1 tấn/ tháng</span></p>
+                <p class="txt-time">Thời gian mua:<span>Q3/2021</span></p>
+              </div>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <div class="img">
+                <img src="./images/buy04.png" alt="Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn">
+              </div>
+              <div class="content">
+                <p class="txt-company">HTX TM DV nông nghiệp Như Hoàng</p>
+                <h3 class="txt-title">Cần tìm đối tác cung cấp: Trứng gà công nghiệp số lượng lớn</h3>
+                <p class="txt-painted">Mô tả: 1.000 tấn/ năm, đạt tiêu chuẩn xuất khẩu, tại khu vực TP.HCM, Long An và Miền Tây Nam Bộ...</p>
+                <p class="txt-demand">Nhu cầu:<span>1 tấn/ tháng</span></p>
+                <p class="txt-time">Thời gian mua:<span>Q3/2021</span></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <a href="#" class="btn-readmore arrowB"><span>Xem thêm 36 sản phẩm chào mua </span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-main">
+      <section class="clearfix">
+        <a href="#" class="footer-logo">
+          <i class="icon-logo"></i>
+        </a>
+        <div class="footer-contact">
+          <p>SỞ CÔNG THƯƠNG TP. HỒ CHÍ MINH</p>
+          <p class="item">Điện thoại: <a href="tel:(+8428)38296322">(+8428) 3829 6322</a></p>
+          <p class="item">Fax: <a href="tel:(+8428)38221778">(+8428) 3822 1778</a></p>
+          <p class="item">Email: <a href="mailto:sct@tphcm.gov.vn">sct@tphcm.gov.vn </a></p>
+        </div>
+        <ul class="footer-menu">
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#">Hướng dẫn đăng ký</a></li>
+          <li><a href="#">Liên hệ</a></li>
+          <li><a href="#">Chính sách</a></li>
+          <li><a href="#">Quy định</a></li>
+        </ul>
+        <div class="footer-network">
+          <p>Kết nối</p>
+          <div>
+            <a href="#" target="_blank"><i class="icon-youtube"></i></a>
+            <a href="#" target="_blank"><i class="icon-facebook"></i></a>
+            <a href="#" target="_blank"><i class="icon-twitter"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">© 2017 - BẢN QUYỀN SỞ CÔNG THƯƠNG THÀNH PHỐ HỒ CHÍ MINH</p>
+      <p class="address">Địa chỉ: 163 Hai Bà Trưng, Quận 3, Thành phố Hồ Chí Minh.</p>
+    </div>
+  </footer>
+  <!-- / Footer -->
+  <script  src="./js/jquery.min.js"></script>
+  <script  src="./js/common.js"></script>
+</body>
+</html>

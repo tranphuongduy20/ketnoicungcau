@@ -1,0 +1,58 @@
+﻿a {
+    text-decoration: none;
+    transition: .3s;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+body, input, button, option, textarea, label, select, legend, h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font: 14px/18px Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #0E0E0E;
+    outline: none;
+}
+
+a {
+    transition: .3s;
+}
+
+p {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    text-rendering: geometricPrecision;
+}
+
+input[type=text], input[type=tel], textarea {
+    -webkit-appearance: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+section {
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.list-menu {
+    margin-bottom: 0px;
+}

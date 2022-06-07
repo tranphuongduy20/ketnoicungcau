@@ -1,0 +1,121 @@
+﻿@using ketnoicungcau.vn.ViewComponents
+@using ketnoicungcau.business.Helpers.Interface
+@inject IUserHelpers _userHelpers;
+@model ketnoicungcau.vn.ViewModels.vmHome
+@{
+    ViewData["Title"] = "Website Kết Nối Cung Cầu - Sở Công Thương Tp Hồ Chí Minh";
+    var rnd = new Random().Next();
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Website Kết Nối Cung Cầu - Sở Công Thương Tp Hồ Chí Minh",
+            Description = "Website kết nối cung cầu nơi giới thiệu, tìm kiếm sản phẩm dành cho các doanh nghiệp trong cả nước"
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css
+{
+    <link rel="stylesheet" href="~/Contents/css/bundle//listing.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/bundle/home.min.css" />
+}
+@section Scripts
+{
+    <script src="~/Contents/js/bundle/home.min.js?v=@rnd"></script>
+}
+
+
+@{
+    <!-- Banner common -->
+    @await Component.InvokeAsync("Banner", new BannerViewComponent.ReqBanner { PlaceId = 4, viewName = "Index" })
+    <!-- / Banner common -->
+
+    <div class="tab-container">
+        <partial name="~/Views/Home/Partial/ListCate.cshtml" />
+        <!-- Sản phẩm chào bán-->
+        @if (Model != null && Model.ListSell != null && Model.ListSell.Count > 0)
+        {
+            <div class="tab-content show-active" id="tab1">
+                <section>
+                    <ul class="listproduct">
+                        <partial name="~/Views/Common/Partial/_ListProductHighlights.cshtml" model="@Model.ListSell" />
+                    </ul>
+                    <a href="/chao-ban" class="btn-readmore arrowR"><span>Xem tất cả sản phẩm chào bán</span></a>
+                </section>
+            </div>
+        }
+        <!--  /  Sản phẩm chào bán-->
+        <!-- Sản phẩm chào mua-->
+        @if (Model != null && Model.ListBuy != null && Model.ListBuy.Count > 0)
+        {
+            <div class="tab-content boxbuy" id="tab2">
+                <section>
+                    <ul class="listbuy">
+                        <partial name="~/Views/Common/Partial/_ListProductHighlights.cshtml" model="@Model.ListBuy" />
+                    </ul>
+                    <a href="/chao-mua" class="btn-readmore arrowR"><span>Xem tất cả sản phẩm chào mua</span></a>
+                </section>
+            </div>
+        }
+        <!--  / Sản phẩm chào mua-->
+
+        <section>
+            <!-- Banner sản phẩm -->
+            @await Component.InvokeAsync("Banner", new BannerViewComponent.ReqBanner { PlaceId = 8, viewName = "BannerPromote" })
+            <!-- / Banner sản phẩm -->
+            @if (currentUser != null && currentUser.Companyid > 0)
+            {
+                <!-- Sản phẩm quan tâm -->
+                @if (Model != null && Model.ListRelated != null && Model.ListRelated.Count > 0)
+                {
+                    <div class="related">
+                        <h3 class="c-title">Có thể bạn quan tâm</h3>
+
+                        <partial name="~/Views/Common/Partial/_ListProductRelated.cshtml" model="@Model.ListRelated" />
+                    </div>
+                }
+                <!-- / Sản phẩm quan tâm -->
+            }
+            <!-- Tin tức -->
+            @if (Model != null && Model.ListNew != null && Model.ListNew.Count > 0)
+            {
+                <div class="blog">
+                    <div class="blog__top">
+                        <h3 class="c-title">Tin tức sự kiện</h3>
+                        <a href="/tin-tuc" class="link">Xem tất cả tin tức</a>
+                    </div>
+                    <div class="blog__list owl-carousel">
+                        <partial name="~/Views/Common/Partial/_ListBlog.cshtml" model="@Model.ListNew" />
+                    </div>
+                </div>
+            }
+            <!-- / Tin tức -->
+            <!-- Doanh nghiệp-->
+            @if (Model != null && Model.ListCompany != null && Model.ListCompany.Count > 0)
+            {
+                <div class="company">
+                    <h3 class="c-title">Doanh nghiệp nổi bật</h3>
+                    <ul class="listcompany">
+                        <partial name="~/Views/Common/Partial/_ListCompanyHighlights.cshtml" model="@Model.ListCompany" />
+                    </ul>
+                    <a href="/doanh-nghiep" class="btn-readmore arrowR"><span>Xem tất cả doanh nghiệp</span></a>
+                </div>
+            }
+            <!-- /  Doanh nghiệp-->
+        </section>
+
+        <!-- Thông tin hội nghị -->
+        @if (Model != null && Model.ListNewTop1 != null && Model.ListNewTop1.Count > 0)
+        {
+            <partial name="~/Views/Common/Partial/_ListBlogDetail.cshtml" model="@Model.ListNewTop1.Where(i => i.Categoryid == 12 && i.Displayorder == 1).Take(1).ToList()" />
+        }
+        <!-- / Thông tin hội nghị -->
+    </div>
+}

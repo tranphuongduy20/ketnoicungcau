@@ -1,0 +1,13 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.ProductWeb>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <li class="item">
+                <partial name="~/Views/Common/BoxItem/ProductItem.cshtml" model="@item" />
+            </li>
+        }
+    }
+}

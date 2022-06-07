@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Đăng nhập - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+           Title = "Đăng nhập - Kết nối cung cầu",
+           Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.M.min.css?v=@rnd">
+}
+
+<div class="login-box">
+    <h2 class="title-login">Đăng nhập</h2>
+    <form action="/" class="otp-form" id="frmLogin">
+        @Html.AntiForgeryToken()
+        <input type="text" class="input-field" pattern="\d*" name="Taxid" placeholder="Mã số thuế">
+        <input type="password" class="input-field" name="Password" placeholder="Mật khẩu" oninput="MaxLength(this)" maxlength="20">
+        <div class="error-general" style="display: none"></div>
+        <a class="forgot-password fogot-txt">Quên mật khẩu</a>
+        <div class="boxcaptcha">
+            <div class="g-recaptcha" data-sitekey="@(ketnoicungcau.business.Helpers.ConfigConstants.SiteKeyCaptcha)"></div>
+        </div>
+        <button type="submit" class="btn-otp">ĐĂNG NHẬP</button>
+        <div class="logindiv">
+            <p>Bạn chưa có tài khoản?  <a href="/dang-ky"> Đăng ký mới tại đây</a></p>
+        </div>
+    </form>
+</div>

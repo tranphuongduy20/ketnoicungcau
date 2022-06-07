@@ -1,0 +1,234 @@
+.blog {
+    max-width: 640px;
+    width: 100%;
+    margin: auto;   
+}
+
+    .blog .quicklink {
+        justify-content: center;
+    }
+
+.blog__post {
+    border: 1px solid #EFEFEF;
+    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+    padding: 20px 145px;
+}
+
+.blog img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto
+}
+
+.post-firstview .content {
+    margin-top: 12px;
+}
+
+.post-firstview .item-big, .post-small {
+    float: left;
+}
+
+.post-firstview .item-big {
+    width: 70%;
+}
+
+
+    .post-firstview .item-big h3 {
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 31px;
+    }
+
+    .post-firstview .item-big p {
+        color: #666;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        font-size: 15px;
+        line-height: 21px;
+        margin-top: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.post-small {
+    padding-left: 20px;
+    width: 30%;
+}
+
+    .post-small li {
+        margin-bottom: 20px;
+    }
+
+    .post-small .content {
+        margin-top: 5px;
+    }
+
+        .post-small .content h3 {
+            color: #333;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 20px;
+        }
+
+.listblog {
+    margin: 40px 0 20px;
+}
+
+    .listblog li a::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .listblog li a {
+        border-bottom: 1px solid #E5E5E5;
+        display: block;
+        padding: 20px 0;
+    }
+
+    .listblog .img, .listblog .content {
+        float: left;
+    }
+
+    .listblog .img {
+        width: 255px;
+    }
+
+    .listblog .content {
+        padding-left: 20px;
+        width: calc(100% - 255px);
+    }
+
+        .listblog .content h3 {
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 28px;
+        }
+
+        .listblog .content .time {
+            color: #666;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 10px;
+        }
+
+
+.blog__detail h1 {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 24px;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.blog__detail .time {
+    color: #666;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 5px 10px;
+}
+
+.blog__detail {
+    border: 1px solid #EFEFEF;
+    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+}
+
+    .blog__detail .content {
+        margin-top: 20px;
+    }
+
+        .blog__detail .content p {
+            color: #333;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        .blog__detail .content figure {
+            margin: 0 auto 25px;
+        }
+
+            .blog__detail .content figure figcaption {
+                color: #666;
+                font-size: 13px;
+                line-height: 18px;
+                margin: 5px 10px;
+                text-align: center;
+            }
+
+.blog-related {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.related-ttl {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+}
+
+.blog-related .listblog {
+    margin-top: 0;
+}
+
+    .blog-related .listblog li:last-child a {
+        border-bottom: none;
+    }
+
+
+
+/*----------- thumbnail chi tiet tin tuc ----------*/
+.thubmail-slide {
+    margin-top: 10px;
+}
+
+    .thubmail-slide .owl-carousel .owl-dots {
+        width: 710px;
+    }
+
+    .thubmail-slide .next,
+    .thubmail-slide .prev {
+        bottom: 20px;
+    }
+
+    .thubmail-slide .prev {
+        left: 40px;
+    }
+
+    .thubmail-slide .next {
+        right: 50px;
+    }
+
+    .thubmail-slide .owl-carousel .owl-dot {
+        height: 60px !important;
+        min-width: 80px;
+        width: 80px !important;
+    }
+
+    .thubmail-slide .owl-dot img {
+        height: 60px;
+    }
+
+    .thubmail-slide .counter {
+        bottom: 80px;
+    }
+/*----------- / thumbnail chi tiet tin tuc ----------*/
+
+.content h2 {
+    margin-left: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.content h3 {
+    margin-left: 8px;
+    margin-bottom: 5px;
+}

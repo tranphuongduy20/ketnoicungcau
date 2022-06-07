@@ -1,0 +1,107 @@
+﻿@model ketnoicungcau.vn.ViewModels.RequestBoxPrice
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+<div class="price-main">
+    <div class="itm">
+        @if (_workContext.IsMobile)
+        {
+        <div class="first-row">
+            <p class="txt txt01">Từ</p>
+            <div class="frames frames01">
+                <input id="from" type="number" class="frames-txt" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Fromquantily : 0)"/>
+            </div>
+            <p class="txt txt02">Đến</p>
+            <div class="frames frames02">
+                <input id="to" type="number" class="frames-txt" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Toquantily : 0)">
+            </div>
+            <div class="frames frames03">
+                <div class="form-field unit-input">
+                    <div class="filter__item" id="unit@(Model.numId)">
+                        <input class="filter-input" type="text" readonly>
+                        <label for="category">Đơn vị<span style="color: red">*</span></label>
+                        <div id="unit-select" class="filter-main">
+                            <div class="filter-search">
+                                <input type="text" placeholder="Tìm">
+                                <button type="submit">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </div>
+                            <ul class="list-item">
+                                @{
+                                    if (Model != null && Model.ListUnit != null && Model.ListUnit.Any())
+                                    {
+                                        foreach (var item in Model.ListUnit)
+                                        {
+                                            <li data-id="@item.Unitid" class="@(Model != null && Model.Productpriceitem != null && Model.Productpriceitem.Unitid == item.Unitid ? "act" : "")"><a><i class="icon-checked"></i>@item.Unitname</a></li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="second-row">
+            <p class="txt txt03">=</p>
+            <input id="price" type="number" class="result" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Price : 0)"/>
+        </div>    
+        <span onclick="DeleteBoxPrice(this)" class="del-boxPrice" style="color: #d92525; margin: 10px auto; cursor: pointer">Xoá khoảng giá</span>
+        }
+        else
+        {
+        <p class="txt txt01">Từ</p>
+        <div class="frames frames01">
+            <input id="from" type="number" class="frames-txt" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Fromquantily : 0)"/>
+        </div>
+        <p class="txt txt02">Đến</p>
+        <div class="frames frames02">
+            <input id="to" type="number" class="frames-txt" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Toquantily : 0)">
+        </div>
+        <div class="frames frames03">
+            <div class="form-field unit-input">
+                <div class="filter__item" id="unit@(Model.numId)">
+                    <input class="filter-input" type="text" readonly>
+                    <label for="category">Đơn vị<span style="color: red">*</span></label>
+                    <div id="unit-select" class="filter-main">
+                        <div class="filter-search">
+                            <input type="text" placeholder="Tìm đơn vị">
+                            <button type="submit">
+                                <i class="icon-search"></i>
+                            </button>
+                        </div>
+                        <ul class="list-item">
+                            @{
+                                if (Model != null && Model.ListUnit != null && Model.ListUnit.Any())
+                                {
+                                    foreach (var item in Model.ListUnit)
+                                    {
+                                        <li data-id="@item.Unitid" class="@(Model != null && Model.Productpriceitem != null && Model.Productpriceitem.Unitid == item.Unitid ? "act" : "")"><a><i class="icon-checked"></i>@item.Unitname</a></li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="txt txt03">=</p>
+        <input id="price" type="number" class="result" value="@(Model != null && Model.Productpriceitem != null ? Model.Productpriceitem.Price : 0)"/> 
+        <span onclick="DeleteBoxPrice(this)" class="del-boxPrice" style="color: #d92525; margin-left: 20px; cursor: pointer">Xoá</span>
+        }      
+    </div>
+</div>
+
+@{
+    if (Model != null)
+    {
+        if (Model.GetButton)
+        {
+            <a onclick="AddBoxPrice(this)" class="btn-addprice">
+                <i class="icon-upload"></i>
+                Thêm giá khác (nếu có)
+            </a>
+        }
+    }
+}

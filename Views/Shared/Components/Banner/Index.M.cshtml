@@ -1,0 +1,16 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmBannerComponent
+
+@if (Model?.banners?.Count > 0)
+{
+    <div class="slider-banner owl-carousel">
+        @foreach (var item in Model.banners)
+        {
+            if (item.Enddate > DateTime.Now && item.Isactived == 1)
+            {
+                <a href="@item.Url" class="item">
+                    <img src="@item.Bannersmobile" alt="@item.Description">
+                </a>
+            }
+        }
+    </div>
+}

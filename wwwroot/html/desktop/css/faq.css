@@ -1,0 +1,196 @@
+h2 {
+    color: #444;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+}
+.faq-main {
+    max-width: 1000px;
+    margin: 40px auto 110px;
+    width: 100%;
+}
+.faq-form {
+    margin-top: 40px;
+}
+.faq-content {
+    border: 1px solid #EFEFEF;
+    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 25px 40px 35px 60px;
+}
+.faqlist.height-scroll {
+    overflow-y: scroll;
+}
+.faqlist {
+    padding-right: 25px;
+}
+.faqlist::-webkit-scrollbar-track{
+	border-radius: 10px;
+	background-color: #F3F3F3;
+}
+.faqlist::-webkit-scrollbar{
+	width: 8px;
+}
+.faqlist::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	background-color: #AAA;
+}
+.faqlist li {
+    margin-bottom: 30px;
+}
+.faqlist .question {
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+    position: relative;
+}
+.faqlist .question::before,
+.faqlist .question::after {
+    background-color: #666;
+    border-radius: 10px;
+    content: '';
+    height: 2px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    transition: .3s;
+    width: 11px;
+}
+.faqlist .question::after {
+    transform: rotate(90deg);
+}
+.faqlist .question.active::after {
+    transform: rotate(180deg);
+}
+.faqlist .question i {
+    margin-right: 10px;
+}
+.faqlist .answer {
+    color: #333;
+    display: none;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 12px;
+}
+
+.faq-form {
+    max-width: 670px;
+    margin: 40px auto 0;
+    width: 100%;
+}
+.faq-form .boxinput {
+    display: flex;
+}
+.faq-form .boxinput .item:first-child {
+    margin-right: 10px;
+}
+.faq-form form {
+    margin-top: 12px;
+}
+.faq-form form input,
+.faq-form form textarea {
+    border: 1px solid #E9E9E9;
+    border-radius: 8px;
+    background-color: #E9E9E9;
+    font-size: 16px;
+    line-height: 18px;
+    padding: 15px 20px;
+}
+.faq-form form input {
+    color: #333;
+    height: 50px;
+}
+.faq-form form textarea {
+    color: #666;
+    height: 110px;
+    width: 100%;
+}
+.faq-form form input::placeholder {
+    color: #666;
+    font-size: 16px;
+    line-height: 18px;
+}
+.faq-form form .item {
+    margin-bottom: 10px;
+    width: calc(50% - 5px);
+}
+.faq-form form .item-full {
+    width: 100%;
+}
+.form-button {
+    align-items: center;
+    display: flex;
+}
+.check-robot {
+    width: 50%;
+}
+.check-robot img {
+    width: 100%;
+}
+.send-faq {
+    background-color: #1C67D8;
+    border: 1px solid #AAA;
+    border-radius: 8px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 21px;
+    padding: 14px 5px;
+    text-align: center;
+    width: 50%;
+}
+
+.bgsend-overlay {
+    background: rgba(0,0,0, 0.6);
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+.popup-send {
+    background-color: #FFF;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    display: none;
+    left: 50%;
+    position: fixed;
+    padding: 20px 17px 40px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 350px;
+    z-index: 1;
+}
+.popup-send .noti {
+    color: #444;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 21px;
+}
+.popup-send .txt {
+    color: #000;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 30px;
+}
+.close-send {
+    background: #1C67D8;
+    border: 1px solid #AAA;
+    border-radius: 8px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 21px;
+    margin: 40px auto 0;
+    padding: 11px 5px;
+    width: 160px;
+}

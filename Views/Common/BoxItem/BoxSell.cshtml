@@ -1,0 +1,33 @@
+﻿@model ketnoicungcau.business.ModelWeb.ProductWeb
+@using ketnoicungcau.business.Extensions
+
+<a href="@Model.GenProductUrl()" data-productid="@Model.Productid">
+    <div class="img">
+        @if (Model.Images != null && Model.Images.Any())
+        { 
+            <img src="@Model.Images.FirstOrDefault().Image" alt="@Model.Productname">
+        }
+        else
+        {
+            <img src="@Model.Company.Logosrc" alt="@Model.Company.Companyname">
+        }
+    </div>
+    <div class="content">
+         <div class="standard">   
+            @if (Model.Standards != null && Model.Standards.Any())
+            {
+                foreach (var item in Model.Standards)
+                {
+                    <p data-id="@item.Standardid">@item.Standardname</p>
+                }
+            }
+        </div>
+        <p class="txt-company txt-limited" data-companyid="@Model.Company.Companyid">@Model.Company.Companyname</p>
+        <h3 class="txt-name txt-limited">@Model.Productname</h3>
+        @if (Model.Ishideprice == 0)
+        { 
+            <p class="txt-weight">@Model.Price</p>
+        }
+        <p class="txt-note txt-limited">@Model.Orderprocedure</p>
+    </div>
+</a>

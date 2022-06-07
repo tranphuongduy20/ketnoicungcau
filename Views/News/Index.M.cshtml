@@ -1,0 +1,167 @@
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.business.Model
+@model ketnoicungcau.vn.ViewModels.vmNews
+
+@{
+    var title = "";
+    if (Model.SelectedCate != null)
+    {
+        title = Model.SelectedCate.Categoryname;
+    }
+    else
+    {
+        title = "Tin tức";
+    }
+    Layout = "_Layout.M";
+    ViewData["Title"] = title + " - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = title + " - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    @if (true) // check not production
+    {
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/News/news.M.dev.css?v=@rnd">
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/global.M.min.css">
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/listing.M.min.css">
+    }
+}
+@section Scripts
+{
+    <script src="~/Contents/js/bundle/news.M.min.js?v=@rnd"></script>
+}
+
+@if (Model != null)
+{
+    <div class="blog">
+        <div class="bg-grdent scrolling_inner">
+            <div class="quicklink scrolling">
+                <a href="/tin-tuc" class="@(Model.SelectedCate == null ? "active" : "")">Tất cả</a>
+                @foreach (var item in Model.ListNewsCate)
+                {
+                    <a href="/tin-tuc/@item.Url" class="@(Model.SelectedCate?.Categoryid == item.Categoryid ? "active" : "")">@item.Categoryname</a>
+                }
+            </div>
+        </div>
+        @if (Model.ListNews?.Count > 0)
+        {
+            var newsCount = Model.ListNews.Count;
+            var firstNews = Model.ListNews.FirstOrDefault();
+            var twoSecondNews = new List<News>();
+            var news = new List<News>();
+
+            if (newsCount > 2)
+            {
+                twoSecondNews = Model.ListNews.GetRange(1, 2);
+            }
+            else if (newsCount > 1)
+            {
+                twoSecondNews = Model.ListNews.GetRange(1, 1);
+            }
+            if (newsCount > 3)
+            {
+                news = Model.ListNews.Skip(3)?.ToList();
+            }
+
+            <div class="blog__post">
+                <div class="post-firstview clearfix">
+                    @if (firstNews?.Newsid > 0)
+                    {
+                        if (firstNews.Newstype == 2)
+                        {
+                            <a href="@firstNews.GenNewsUrl()" class="item-big">
+                                <div class="img img-hasvideo">
+                                    <img src="@firstNews.Video" alt="@firstNews.Title">
+                                    <i class="icon-video"></i>
+                                </div>
+                                <div class="content">
+                                    <h3>@firstNews.Title</h3>
+                                    <p>@Html.Raw(firstNews.ContentString)</p>
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@firstNews.GenNewsUrl()" class="item-big">
+                                <div class="img">
+                                    <img src="@firstNews.Image" alt="@firstNews.Title">
+                                </div>
+                                <div class="content">
+                                    <h3>@firstNews.Title</h3>
+                                    <p>@Html.Raw(firstNews.ContentString)</p>
+                                </div>
+                            </a>
+                        }
+                    }
+                    @if (twoSecondNews?.Count > 0)
+                    {
+                        <ul class="post-small">
+                            @if (Model.ListNews != null && Model.ListNews.Any())
+                            {
+                                @foreach (var item in twoSecondNews)
+                                {
+                                    if (item.Newstype == 2)
+                                    {
+                                        <li>
+                                            <a href="@item.GenNewsUrl()">
+                                                <div class="img img-hasvideo">
+                                                    <img src="@item.Video" alt="@item.Title">
+                                                    <i class="icon-video"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="news-limited">@item.Title</h3>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="@item.GenNewsUrl()">
+                                                <div class="img">
+                                                    <img src="@item.Image" alt="@item.Title">
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="news-limited">@item.Title</h3>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    }
+                                }
+                            }
+                        </ul>
+                    }
+
+                </div>
+                @if (news?.Count > 0)
+                {
+                    int remain = Model.ListNews[0].Totalrecord - Model.PageSize;
+                    <ul class="listblog">
+                        @foreach (var item in news)
+                        {
+                            <partial name="~/Views/News/Partial/_NewsItem.cshtml" model="item" />
+                        }
+                    </ul>
+                    @if (remain > 0)
+                    {
+                        <a href="javascript:void(0)" data-index="0" data-size="@Model.PageSize" data-total="@Model.ListNews[0].Totalrecord" class="btn-readmore arrowB"><span>Xem thêm @remain tin tức</span></a>
+                    }
+                }
+            </div>
+        }
+    </div>
+}

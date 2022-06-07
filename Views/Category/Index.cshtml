@@ -1,0 +1,142 @@
+﻿@using ketnoicungcau.vn.ViewComponents
+@model ketnoicungcau.vn.ViewModels.vmCategory
+
+@{
+    var title = string.IsNullOrEmpty(Model.CategoryName) ? "Sản phẩm chào bán" : "Chào bán " + Model.CategoryName;
+    ViewData["Title"] = title;
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+           Title = title,
+           Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/listing.min.css?v=@rnd">
+}
+
+<div class="listing-cat">
+
+    <div class="listing-cat-banner">
+        <section>
+             <!-- Banner sản phẩm -->
+            @await Component.InvokeAsync("Banner", new BannerViewComponent.ReqBanner { PlaceId = 8, viewName = "BannerPromote" })
+            <!-- / Banner sản phẩm -->
+        </section>
+    </div>
+
+    <div class="tab-common">
+        <section>
+        <ul class="tab-commonlist">
+            <li class="@(Model.isSell ? "is-active" : "")" id="tab-sell">Chào bán</li>
+            <li class="@(Model.isSell ? "" : "is-active")" id="tab-buy">Chào mua</li>
+        </ul>
+        </section>
+    </div>
+
+    <section class="tab-all">
+        <div class="tab-content @(Model.isSell ? "show-active" : "")" id="tab1">
+
+            <div class="box-common">
+                <div class="filter">
+
+                    <partial name="~/Views/Category/Partial/_ListCategorySell.cshtml" model="@Model" />
+
+                    <partial name="~/Views/Category/Partial/_ListSpecialist.cshtml" model="@Model.ListSpecialistSell" />
+
+                    <partial name="~/Views/Category/Partial/_ListProvince.cshtml" model="@Model.ListProvinceSell" />
+
+                    <partial name="~/Views/Category/Partial/_ListStandard.cshtml" model="@Model.ListStandardSell" />
+
+                </div>
+                <partial name="~/Views/Category/Partial/_OrderBy.cshtml"/>
+            </div>
+
+            <partial name="~/Views/Category/Partial/_Empty.cshtml" />
+
+            <div class="list-body">
+                <p class="number" id="total-sell" data-total="@Model.InfoSell.Total">Có @Model.InfoSell.Total sản phẩm</p>
+                <ul class="listproduct">
+                    @if (Model != null && Model.InfoSell.ListProduct != null)
+                    {
+                        <partial name="~/Views/Common/Partial/_ListProduct.cshtml" model="@Model.InfoSell.ListProduct" />
+                    }
+                </ul>
+                <a id="readmore-sell" class="btn-readmore arrowB" @(Model.InfoSell.Left > 0 ? "" : "style=display:none;")><span>Xem thêm @Model.InfoSell.Left sản phẩm</span></a>
+            </div>
+            
+        </div>
+        <div class="tab-content @(Model.isSell ? "" : "show-active")" id="tab2">
+
+            <div class="box-common">
+
+                <div class="filter">
+
+                    <partial name="~/Views/Category/Partial/_ListCategoryBuy.cshtml" model="@Model" />
+
+                    <partial name="~/Views/Category/Partial/_ListSpecialist.cshtml" model="@Model.ListSpecialistBuy" />
+
+                    <partial name="~/Views/Category/Partial/_ListProvince.cshtml" model="@Model.ListProvinceBuy" />
+
+                    <partial name="~/Views/Category/Partial/_ListStandard.cshtml" model="@Model.ListStandardBuy" />
+
+                </div>
+            </div>
+
+            <partial name="~/Views/Category/Partial/_Empty.cshtml" />
+
+            <div class="list-body">
+                <p class="number" id="total-buy" data-total="@Model.InfoBuy.Total">Có @Model.InfoBuy.Total sản phẩm</p>
+                <ul class="listbuy">
+                    @if (Model != null && Model.InfoBuy.ListProduct != null)
+                    {
+                        <partial name="~/Views/Common/Partial/_ListProduct.cshtml" model="@Model.InfoBuy.ListProduct" />
+                    }
+                </ul>
+                <a id="readmore-buy" class="btn-readmore arrowR" @(Model.InfoBuy.Left > 0 ? "" : "style=display:none;")><span>Xem thêm @Model.InfoBuy.Left sản phẩm</span></a> 
+            </div>
+            
+        </div>
+    </section>
+</div>
+
+
+@section Scripts {
+    @if (Model != null)
+    {
+        <script type="text/javascript">
+            var typeBuy = 1;
+            var typeSell = 2;
+            var query = {
+                PageIndex: 0,
+            };
+        </script>
+
+        if (Model.isSell) {
+            <script type="text/javascript">
+                var currentType = typeSell;
+                var flagEmptyBuy = true;
+                var flagEmptySell = false;
+            </script>
+        }
+        else {
+            <script type="text/javascript">
+                var currentType = typeBuy;
+                var flagEmptyBuy = false;
+                var flagEmptySell = true;
+            </script>
+        }
+    }
+    <script src="~/Contents/js/bundle/category.min.js?v=@rnd"></script>
+}
+
+  

@@ -1,0 +1,19 @@
+﻿@using ketnoicungcau.business.Enums
+@model ketnoicungcau.business.ModelWeb.ProductWeb
+
+@if (Model != null && Model.Productid > 0)
+{
+    switch (Model.Type)
+    {
+        case ProductType.Buy:
+            <partial name="~/Views/Common/BoxItem/BoxBuy.cshtml" model="@Model" />
+            break;
+        case ProductType.Sell:
+        case ProductType.Service:
+            <partial name="~/Views/Common/BoxItem/BoxSell.cshtml" model="@Model" />
+            break;
+        default:
+            break;
+    }
+}
+

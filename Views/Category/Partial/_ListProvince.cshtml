@@ -1,0 +1,26 @@
+﻿@model List<ketnoicungcau.business.Model.Province>
+
+<div id="list-province" class="filter__item">
+    <p class="filter-txt">Tỉnh thành</p>
+    <div class="filter-main">
+
+        <div class="filter-search">
+            <input type="text" placeholder="Tìm tỉnh thành">
+            <button type="submit">
+                <i class="icon-search"></i>
+            </button>
+        </div>
+
+        <ul class="list-distrist">
+        @{
+            if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <li data-id="@item.Provinceid"><a><i class="icon-checked"></i>@item.Provincename</a></li>
+                }
+            }
+        }
+    </ul>
+    </div>
+</div>

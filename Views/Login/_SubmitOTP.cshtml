@@ -1,0 +1,21 @@
+﻿@model string
+
+<div class="otp">
+    <h2>Xác nhận OTP để hoàn tất đăng ký</h2>
+    <p class="txt">Hệ thống đã gửi mã OTP về số điện thoại <strong>@Model</strong> bạn vừa đăng ký<br>
+        Xin hãy kiểm tra tin nhắn và <strong>xác nhận mã OTP</strong> bên dưới để hoàn tất đăng ký tài khoản</p>
+    <form action="/" class="otp-form">
+        @Html.AntiForgeryToken()
+        <input type="number" pattern="\d*" name="Phonenumber" class="input-field" value="@Model" style="display: none;">
+        <p class="otp-form-txt">Xác nhận mã OTP</p>
+        <input type="number" pattern="\d*" name="OTP" class="input-field">
+        <div id="otp-error" class="error" style="display: none"></div>
+        <p id="timer-registry">Thời gian còn lại: 1:00<p>
+        <a id="send-otp-again-registry">Gửi lại mã mới</a>
+        <button type="submit" class="btn-otp">HOÀN TẤT ĐĂNG KÝ</button>
+        <div class="logindiv">
+        <p>Bạn đã có tài khoản?</p>
+        <a href="/dang-nhap">Đăng nhập tại đây</a>
+        </div>
+    </form>
+</div>

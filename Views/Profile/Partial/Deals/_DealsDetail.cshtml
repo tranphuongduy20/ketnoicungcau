@@ -1,0 +1,116 @@
+﻿@using ketnoicungcau.business.Enums
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.business.Helpers.Interface
+@using ketnoicungcau.business.ModelWeb
+@model ketnoicungcau.business.ModelWeb.DealsWeb
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+@inject IUserHelpers _userHelpers;
+
+@{
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+    var companyid = 0;
+    if (currentUser != null && currentUser.Companyid > 0)
+        companyid = (int)currentUser.Companyid;
+    var companyInfo = new CompanyWeb();
+    //Deal đang xem là deal gửi, lấy info người nhận
+    if (Model.Buycompanyid == companyid)
+        companyInfo = Model.CompanySaleInfo;
+    //Deal đang xem là deal nhận, lấy info người gửi
+    else
+        companyInfo = Model.CompanyBuyInfo;
+    if (Model != null && companyid > 0)
+    {
+        var classType = "";
+        var stringType = "Từ chối kết nối";
+        if (Model.Status == StatusDeals.Waiting)
+        {
+            classType = "orange"; 
+            stringType = "Chờ kết nối";
+        }
+
+        else if (Model.Status == StatusDeals.Accept)
+        {
+            classType = "green";
+            stringType = "Kết nối thành công";
+        }
+        else if (Model.Status == StatusDeals.Accept)
+        {
+            stringType = "Hủy kết nối";
+        }
+        <div class="popup-connect active">
+            <div class="bg-connect"></div>
+            <div class="detail-connect @classType" data-dealsid="@Model.Dealsid">
+                <i class="close-popup"></i>
+                @if (_workContext.IsMobile)
+                {
+                <a class="title" href="sp-@Model.Productid">@Model.Productname</a>
+                <div class="info-item">
+                    <div class="img-item">
+                    @if (Model.Image != null && string.IsNullOrEmpty(Model.Image.Image) == false)
+                    {   
+                        <img src="@Model.Image.Image" alt="@Model.Productname"> 
+                        
+                    }
+                    else
+                    {
+                        <img src="@companyInfo.Logosrc" alt="@companyInfo.Companyname">     
+                    }
+                    </div>
+                    <div class="text-item">
+                        <small>@Model.Createddate.Value.ToString("HH:mm dd/MM/yyyy")</small>
+                        <span>@stringType</span>
+                    </div>
+                </div>   
+
+                }
+                else
+                {
+                <a href="sp-@Model.Productid" target="_blank" class="info-item">
+                    <div class="img-item">
+                    @if (Model.Image != null && string.IsNullOrEmpty(Model.Image.Image) == false)
+                    {   
+                        <img src="@Model.Image.Image" alt="@Model.Productname">
+
+                    }
+                    else
+                    {
+                        <img src="@companyInfo.Logosrc" alt="@companyInfo.Companyname">              
+                    }
+                    </div>
+                    <div class="text-item">
+                        <h3>@Model.Productname</h3>
+                        <small>@Model.Createddate.Value.ToString("HH:mm dd/MM/yyyy")</small>
+                        <span>@stringType</span>
+                    </div>
+                </a>
+                }
+                <div class="box-info"> 
+                    <span>Thông tin doanh nghiệp kết nối</span>
+                    <a href="@companyInfo.GenCompanyUrl()"><strong>@companyInfo.Companyname</strong></a>
+                    <p>MST: @companyInfo.Taxid</p>
+                    <p>Hotline: @companyInfo.Phonenumber</p>
+                    <p>Email: @companyInfo.Email</p>
+                    @if (string.IsNullOrEmpty(companyInfo.Fburl) == false) {
+                        <p>Fanpage: <a href="@companyInfo.Fburl" target="_blank">@companyInfo.Fburl</a></p>
+                    }  
+                    <strong>@companyInfo.Representname</strong>
+                    <p>Chức vụ: @companyInfo.Representposition</p>
+                </div>
+                @if (Model.Status == StatusDeals.Waiting && Model.Buycompanyid != companyid)
+                {
+                    <div class="btn-connect">
+                        <a id="btn-acceptdeals" >ĐỒNG Ý</a>
+                        <a id="btn-refusedeals" class="refuse">TỪ CHỐI</a>
+                    </div>
+                }
+                else {
+                    <div class="btn-connect">
+                        <a id="btn-canceldeals" >HỦY KẾT NỐI</a>
+                        <a id="btn-closedeals" class="refuse">ĐÓNG</a>
+                    </div>
+                }
+                
+            </div>
+        </div>
+    }
+}

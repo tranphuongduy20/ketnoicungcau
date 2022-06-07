@@ -1,0 +1,12 @@
+﻿@model List<ketnoicungcau.business.Model.News>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <partial name="~/Views/Home/Partial/BoxNews.M.cshtml" model="@item" />
+        }
+    }
+}
+

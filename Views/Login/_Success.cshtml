@@ -1,0 +1,35 @@
+﻿@model string
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+<div class="register-completed">
+    <h2><i class="icon-connectioned"></i> HOÀN TẤT ĐĂNG KÝ</h2>
+    <p class="txt">
+        Bạn đã hoàn tất đăng ký với số điện thoại <strong>@Model</strong><br>
+    </p>
+    <p style="margin-top: 10px">
+       <a href="~/dang-nhap" style="color: #1c67d8;">Đăng nhập </a>để trải nghiệm và sử dụng website <strong>Kết Nối Cung Cầu</strong>
+    </p>
+    @*<form action="/" class="otp-form" id="frmLogin">
+        @Html.AntiForgeryToken()
+        @if (_workContext.IsMobile)
+        {
+            <input type="number" class="input-field" pattern="\d*" name="Taxid" placeholder="Mã số thuế">
+            <input type="password" class="input-field" name="Password" placeholder="Mật khẩu">
+
+        }
+        else
+        {
+            <p class="otp-form-txt">Mã số thuế</p>
+            <input type="number" class="input-field" pattern="\d*" name="Taxid">
+            <p class="otp-form-txt">Mật khẩu</p>
+            <input type="password" class="input-field" name="Password">
+        }
+        <div class="error-general" style="display: none"></div>
+        <a class="forgot-password fogot-txt">Quên mật khẩu</a>
+        <button type="submit" class="btn-otp">ĐĂNG NHẬP</button>
+        <div class="logindiv">
+            <p>Bạn chưa có tài khoản?</p>
+            <a href="/dang-ky">Đăng ký mới tại đây</a>
+        </div>
+    </form>*@
+</div>

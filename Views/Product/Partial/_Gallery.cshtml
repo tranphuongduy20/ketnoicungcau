@@ -1,0 +1,27 @@
+﻿@model ketnoicungcau.business.ModelWeb.ProductWeb
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+@if (Model.Images != null && Model.Images.Any())
+{
+    <div class="thubmail-slide thubmail-slide-product">
+    <div class="counter" @(_workContext.IsMobile ? "style=display:none;" : "")></div>
+    <div class="click-fullscreen"></div>
+    <div class="click-arrow">
+        <div class="prev"></div>
+        <div class="next"></div>
+    </div>
+    <div class="owl-carousel slider-img" id="slider-defaults">
+        @if (_workContext.IsMobile == true) {
+            foreach(var item in Model.Images) {
+                <div class="item-img" data-alt="@Model.Productname"> <img src="@item.Image" width="360" height="203"></div>
+            }
+        }
+        else
+        {
+            foreach(var item in Model.Images) {
+                <div class="item-img" data-alt="@Model.Productname"> <img src="@item.Image" width="900" height="508"></div>
+            }
+        }
+    </div>
+</div>
+}

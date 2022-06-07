@@ -1,0 +1,26 @@
+﻿@model List<ketnoicungcau.business.Model.Specialties>
+
+<div id="list-specialist" class="filter__item">
+    <p class="filter-txt">Đặc sản vùng miền</p>
+    <div class="filter-main">
+
+        <div class="filter-search">
+            <input type="text" placeholder="Tìm đặc sản vùng miền">
+            <button type="submit">
+                <i class="icon-search"></i>
+            </button>
+        </div>
+
+        <ul class="list-distrist">
+            @{
+                if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <li data-id="@item.Specialtiesid"><a><i class="icon-checked"></i>@item.Specialtiesname</a></li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

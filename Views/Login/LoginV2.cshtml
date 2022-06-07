@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+           Title = "Đăng nhập - Kết nối cung cầu",
+           Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.min.css?v=@rnd">
+}
+
+<div class="register-completed">
+    <h2 class="title-login">ĐĂNG NHẬP</h2>
+    <p class="txt">Xin hãy đăng nhập để bắt đầu <strong>Kết Nối Cung Cầu</strong></p>
+    <form action="/" class="otp-form" id="frmLogin">
+        @Html.AntiForgeryToken()
+        <p class="otp-form-txt">Mã số thuế</p>
+        <input type="number" class="input-field" pattern="\d*" name="Taxid">
+        <p class="otp-form-txt">Mật khẩu</p>
+        <input type="password" class="input-field" name="Password" oninput="MaxLength(this)" maxlength="20">
+        <div class="error-general" style="display: none"></div>
+        <a class="forgot-password fogot-txt">Quên mật khẩu</a>
+        <div class="boxcaptcha">
+            <div class="g-recaptcha" data-sitekey="@(ketnoicungcau.business.Helpers.ConfigConstants.SiteKeyCaptcha)"></div>
+        </div>
+        <button type="submit" class="btn-otp">ĐĂNG NHẬP</button>
+        <div class="logindiv">
+            <p>Bạn chưa có tài khoản?</p>
+            <a href="/dang-ky">Đăng ký mới tại đây</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/Contents/js/Login/loginv2.dev.js?v=@rnd"></script>
+}

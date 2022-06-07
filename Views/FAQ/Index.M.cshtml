@@ -1,0 +1,87 @@
+@using ketnoicungcau.vn.ViewComponents
+@model ketnoicungcau.vn.ViewModels.vmFAQ
+﻿@using ketnoicungcau.business.Helpers
+@using ketnoicungcau.business.Helpers.Interface
+@inject IUserHelpers _userHelpers;
+
+@{
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Hỏi đáp - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Hỏi đáp - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/faq.M.min.css?v=@rnd">
+}
+
+<section>
+    <div class="faq-main">
+        <h2>Câu hỏi thường gặp</h2>
+        <div class="faq-content">
+            <ul class="faqlist faqlistM @(Model.ListFAQ.Count >= 6 ? "height-scroll" : "")">
+                @foreach (var item in Model.ListFAQ)
+                {
+                    <li>
+                        <h3 class="question">
+                            <i class="icon-faq"></i>
+                            @item.Contentask
+                        </h3>
+                        <p class="answer">@item.Contentrep</p>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="faq-form">
+            <h2>Bạn còn câu hỏi khác? Hãy gửi thắc mắc tại đây</h2>
+            <form method="post" class="form-faq">
+                @Html.AntiForgeryToken()
+                <div class="item">
+                    <input type="text" placeholder="Họ và tên" id="fullName" name="fullName" class="item-input">
+                </div>
+                <div class="item">
+                    <input type="text" placeholder="Số điện thoại" id="phoneNumber" name="phoneNumber" class="item-input">
+                </div>
+                <div class="item">
+                    <input type="text" placeholder="Email" id="email" name="email" class="item-input">
+                </div>
+                <textarea id="content" name="content" rows="3" placeholder="Mời bạn viết câu hỏi thắc mắc tại đây"></textarea>
+                <div class="boxcaptcha">
+                    <div class="g-recaptcha" data-sitekey="@(ConfigConstants.SiteKeyCaptcha)"></div>
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="send-faq">GỬI CÂU HỎI</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/Contents/js/bundle/faq.min.js?v=@rnd"></script>
+    @if (currentUser != null && currentUser.Companyid > 0)
+    {
+        <script>
+            var isLogin = true;
+        </script>
+    }
+    else {
+        <script>
+            var isLogin = false;
+        </script>
+    }
+}

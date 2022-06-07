@@ -1,0 +1,116 @@
+﻿@using ketnoicungcau.business.Helpers.Interface
+@using ketnoicungcau.vn.ViewComponents
+@model List<ketnoicungcau.business.ModelWeb.Menu>
+@inject IUserHelpers _userHelpers;
+@{
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+    var isLogin = false;
+    var CountDeals = 0;
+    if (currentUser != null && currentUser.Companyid > 0)
+    {
+        isLogin = true;
+        CountDeals = await _userHelpers.GetNumberNotifyDeals(currentUser.Companyid);
+        var a = CountDeals == 0;
+    }
+}
+<div class="menu-show">
+    <div class="menu-top clearfix">
+        @if (isLogin)
+        {
+            var taxId = @currentUser?.Taxid?.Insert(3, " ").Insert(7, " ");
+            <a class="tax-user" href="~/profile" data-companyid="@currentUser.Companyid">
+                <img src="@currentUser?.Logosrc" width="30" height="30">
+                <p>@taxId</p>
+            </a>
+
+        }
+        else
+        {
+            <a href="~/dang-nhap" class="login">
+                <i class="icon-user"></i>
+                Đăng nhập/ Đăng ký
+            </a>
+        }
+        <div class="close-menu">
+            <i class="icon-closemenu"></i>
+            Đóng
+        </div>
+    </div>
+    <ul class="menu-main">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var root in Model)
+            {
+                if(root.IsActived == 1) 
+                {
+                    if (root.ChildMenus != null && root.ChildMenus.Any())
+                    {
+                        <li>
+                            <a href="~/@root.Url" class="arrow-menu click-submenu">@root.Name</a>
+                            @if (root.ChildMenus != null && root.ChildMenus.Any())
+                            {
+                                <ul class="submenu">
+                                    @foreach (var sub in root.ChildMenus)
+                                    {
+                                        if(sub.IsActived == 1) 
+                                        {
+                                            <li>
+                                                @if (sub.ChildMenus.Count == 0)
+                                                {
+                                                    <a href="~/@sub.Url" class="@(sub.ChildMenus != null && sub.ChildMenus.Any() && sub.ChildMenus.FirstOrDefault().IsActived == 1 ? "open-sub arrow-submenu" : "")">@sub.Name</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@(sub.ChildMenus.FirstOrDefault().IsActived == 1 ? "javascript:void(0)" : sub.Url)" class="@(sub.ChildMenus != null && sub.ChildMenus.Any() && sub.ChildMenus.FirstOrDefault().IsActived == 1 ? "open-sub arrow-submenu" : "")">@sub.Name</a>
+                                                    @if (sub.ChildMenus != null && sub.ChildMenus.Any() && sub.ChildMenus.FirstOrDefault().IsActived == 1)
+                                                    {
+                                                        <ul class="sub-submenu">
+                                                            @foreach (var last in sub.ChildMenus)
+                                                            {
+                                                                if (last.IsActived == 1)
+                                                                {
+                                                                    <li>
+                                                                        <a href="~/@last.Url-chao-ban" data-id="@last.Id">@last.Name</a>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    }
+                                                }
+                                        
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@root.Url-chao-ban" data-id="@root.Id">@root.Name</a>
+                        </li>
+                    }
+                }
+            }
+        }
+        @await Component.InvokeAsync("Menu", new MenuViewComponent.ReqMenu { ViewName = "Navigation", IsNavigation = true, IsMobile = true })
+    </ul>
+    @if (isLogin)
+    {
+        <div class="profile-menu">
+            <p class="profile-menu-ttl arrow-menu">Thông tin tài khoản</p>
+            <ul>
+                <li><a href="~/profile" class="item">Thông tin tài khoản</a></li>
+                <li><a href="~/doi-mat-khau" class="item">Đổi mật khẩu</a></li>
+                <li><a href="~/mywork" class="item">Kết nối của tôi <span class="number" @(CountDeals > 0 ? "" : "style=display:none;")>@CountDeals</span></a></li>
+                <li><a href="~/productlist?type=2" class="item">Sản phẩm chào bán</a></li>
+                <li><a href="~/productlist?type=1" class="item">Sản phẩm chào mua</a></li>
+                <li><a href="~/addproduct?type=2" class="item">Đăng sản phẩm chào bán</a></li>
+                <li><a href="~/addproduct?type=1" class="item">Đăng sản phẩm chào mua</a></li>
+            </ul>
+        </div>
+        <div><a href="~/logout" class="logout">Đăng xuất</a></div>
+    }
+    <div><a href="tel:(+8428)38296322" class="hotline">Hotline: (+8428) 3829 6322</a></div>
+</div>

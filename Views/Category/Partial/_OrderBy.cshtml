@@ -1,0 +1,17 @@
+﻿@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+<div class="sort" @*@(isHasFilterSort ? "" : "style=display:none;")*@>
+    @if (_workContext.IsMobile == true)
+    {
+        <p class="click-sort"><span class="sort-show">Mới nhất</span></p>
+    }
+    else
+    {
+        <p class="click-sort">Sắp xếp theo: <span class="sort-show">Mới nhất</span></p>
+    }
+    <div class="sort-main">
+        <p data-id="1" class="selected"><i></i>Mới nhất</p>
+        <p data-id="2"><i></i>Giá từ cao đến thấp</p>
+        <p data-id="3"><i></i>Giá từ thấp đến cao</p>
+    </div>
+</div>

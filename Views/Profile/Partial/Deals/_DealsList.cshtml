@@ -1,0 +1,106 @@
+﻿@using ketnoicungcau.business.Enums
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.business.ModelWeb
+@model ketnoicungcau.vn.ViewModels.InfoTabDeals
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+@{
+    if (Model != null && Model.ListDeals != null && Model.ListDeals.Any())
+    {
+        foreach (var item in Model.ListDeals)
+        {
+            var companyInfo = new CompanyWeb();
+            if (Model.Type == DealsTypeCompany.Receive) companyInfo = item.CompanyBuyInfo;
+            else companyInfo = item.CompanySaleInfo;
+            @if (_workContext.IsMobile)
+            {
+            <div class="item-deals" data-dealsid="@item.Dealsid">
+                <div class="field-deals">
+                    <span>ID</span>
+                    <span style="padding-left: 4px; color: #000">#15621</span>
+                </div>
+                
+                <span>
+                <a href="@item.CompanyBuyInfo.GenCompanyUrl()" data-companyid="@companyInfo.Companyid" target="_blank">@companyInfo.Companyname</a>
+                </span>
+                <span>
+                <a href="sp-@item.Productid" target="_blank" class="product-name" >@item.Productname</a>
+                </span>
+                <div class="field-deals">
+                    <span>@item.Createddate.Value.ToString("HH:mm dd/MM/yyyy")</span>
+                    <div class="status">
+                        @switch (item.Status)
+                        {
+                            case StatusDeals.Waiting:
+                                <span>Chờ kết nối</span>
+                                break;
+                            case StatusDeals.Accept:
+                                <span class="color-agree">Đồng ý</span>
+                                break;
+                            case StatusDeals.Deny:
+                                <span class="color-refuse">Từ chối</span>
+                                break;
+                            case StatusDeals.Cancel:
+                                <span class="color-refuse">Hủy</span>
+                                break;
+                            default:
+                                <span>Chờ kết nối</span>
+                                break;
+                        }
+                    </div>
+                </div>
+                <span style="padding-right: 10px;">
+                <a class="click-seedetail" data-dealsid="@item.Dealsid">Xem chi tiết</a>
+                </span>
+            </div>
+            }
+            else
+            {
+                 <tr data-dealsid="@item.Dealsid">
+                    <td>
+                        <span style="padding-left: 10px;">#@item.Dealsid</span>
+                    </td>
+                    <td>
+                        <span>
+                        <a href="@item.CompanyBuyInfo.GenCompanyUrl()" data-companyid="@companyInfo.Companyid" target="_blank">@companyInfo.Companyname</a>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                        <a href="sp-@item.Productid" target="_blank">@item.Productname</a>
+                        </span>
+                    </td>
+                    <td>
+                        <span>@item.Createddate.Value.ToString("HH:mm dd/MM/yyyy")</span>
+                    </td>
+                    <td class="status">
+                        @switch (item.Status)
+                        {
+                            case StatusDeals.Waiting:
+                                <span>Chờ kết nối</span>
+                                break;
+                            case StatusDeals.Accept:
+                                <span class="color-agree">Đồng ý</span>
+                                break;
+                            case StatusDeals.Deny:
+                                <span class="color-refuse">Từ chối</span>
+                                break;
+                            case StatusDeals.Cancel:
+                                <span class="color-refuse">Hủy</span>
+                                break;
+                            default:
+                                <span>Chờ kết nối</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        <span style="padding-right: 10px;">
+                        <a class="click-seedetail" data-dealsid="@item.Dealsid">Xem chi tiết</a>
+                        </span>
+                    </td>
+                </tr>
+            }
+
+        }
+    }
+}

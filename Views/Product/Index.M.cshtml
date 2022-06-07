@@ -1,0 +1,86 @@
+﻿@using ketnoicungcau.business.Enums
+@using ketnoicungcau.vn.ViewComponents
+@model ketnoicungcau.vn.ViewModels.vmProductDetail
+
+@{
+    var title = Model.Product.Productname;
+    Layout = "_Layout.M";
+    ViewData["Title"] = title;
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+           Title = title,
+           Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/detail.M.min.css?v=@rnd">
+}
+
+<div class="container">
+
+    @if (Model.Product.Type != ProductType.Buy)
+    {
+        <partial name="~/Views/Product/Partial/_Gallery.cshtml" model="@Model.Product" />
+    }
+
+    <div class="detail-main">
+        @Html.AntiForgeryToken()
+        @switch (Model.Product.Type)
+        {
+            case ProductType.Buy:
+                <partial name="~/Views/Product/Partial/_InfoBuy.cshtml" model="@Model" />
+                break;
+            case ProductType.Sell:
+                <partial name="~/Views/Product/Partial/_InfoSell.cshtml" model="@Model" />
+                break;
+            case ProductType.Service:
+                <partial name="~/Views/Product/Partial/_InfoService.cshtml" model="@Model" />
+                break;
+            default:
+                break;
+        }
+
+        <partial name="~/Views/Product/Partial/_CompanyInfo.cshtml" model="@Model.Product" />
+
+        <partial name="~/Views/Product/Partial/_Connect.cshtml" model="@Model" />
+
+        <partial name="~/Views/Product/Partial/_Description.cshtml" model="@Model.Product" />
+        
+    </div>
+</div>
+
+@section Scripts {
+    @if (Model.UserCompany != null && Model.UserCompany.Companyid > 0)
+    {
+        <script type="text/javascript">
+            var dealQuery = {
+                Seller : @Model.Product.Company.Companyid,
+                Buyer: @Model.UserCompany.Companyid,
+                Product: @Model.Product.Productid,
+                Quantity: @(Model.Product.Quantity == null ? 0 : Model.Product.Quantity),
+                Unit: @(Model.Product.Quantity == null ? 0 : Model.Product.Quantity), 
+                Value: @((Model.Product.Ishideprice == 0 && Model.ListPrices != null && Model.ListPrices.Any()) ? Model.ListPrices.FirstOrDefault().Price : 0)
+            };
+
+            var isLogin = true;
+        </script>
+    }
+    else {
+        <script type="text/javascript">
+            var dealQuery = null;
+            var isLogin = false;
+        </script>
+    }
+    <script src="~/Contents/js/bundle/detail.M.min.js?v=@rnd"></script>
+}

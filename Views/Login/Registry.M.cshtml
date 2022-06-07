@@ -1,0 +1,235 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmRegistry
+
+@{
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Đăng ký tài khoản - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+           Title = "Đăng ký tài khoản - Kết nối cung cầu",
+           Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.M.min.css?v=@rnd">
+}
+
+<div class="register">
+    <h2>
+        Đăng ký tài khoản mới
+        <div class="guideline">
+            <a href="/tin-tuc/tin-tuc-nay-do-duy-tao-do-co-gi-lien-he-duy-nha-28">Hướng dẫn đăng sản phẩm chào mua</a>
+        </div>
+    </h2>
+    <form action="/" class="register-form">
+      @Html.AntiForgeryToken()
+      <div class="form-item">
+        <h3>
+            Thông tin tài khoản
+        </h3>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" name="Companyname" id="Companyname">
+            <label for="txtcompany">Tên doanh nghiệp<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" pattern="\d*" name="Taxid" id="Taxid">
+            <label for="taxcode">Mã số thuế<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="number" pattern="\d*" oninput="MaxLength(this)" maxlength="10" name="Phonenumber" id="Phonenumber">
+            <label for="phone">Số điện thoại di động<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="password" name="Password" id="Password" oninput="MaxLength(this)" maxlength="20">
+            <label for="password">Mật khẩu<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="password" name="ConfirmPassword" id="ConfirmPassword" oninput="MaxLength(this)" maxlength="20">
+            <label for="repassword">Nhập lại mật khẩu<span style="color: red">*</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <h3>Thông tin doanh nghiệp</h3>
+        <div class="item full">
+            <div class="form-field">
+                <div class="filter__item" id="list-cate">
+                <input class="filter-input" type="text" name="Listcategoryid" readonly>
+                <label for="category">Ngành nghề kinh doanh<span style="color: red">*</span></label>
+                <div class="filter-main">
+                    <div class="filter-search">
+                        <input type="text" placeholder="Tìm ngành nghề kinh doanh">
+                        <button type="submit">
+                            <i class="icon-search"></i>
+                        </button>
+                    </div>
+
+                    <ul class="list-item">
+                        @{
+                            if (Model.ListCate != null && Model.ListCate.Any())
+                            {
+                                foreach (var item in Model.ListCate)
+                                {
+                                    <li data-id="@item.Categoryid"><a><i class="icon-checked"></i>@item.Categoryname</a></li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="item full">
+            <div class="form-field">
+                <div class="filter__item" id="list-province">
+                <input class="filter-input" type="text" name="Provinceid" readonly>
+                <label for="province">Tỉnh/ Thành Phố<span style="color: red">*</span></label>
+                <div class="filter-main">
+                    <div class="filter-search">
+                        <input type="text" placeholder="Tìm Tỉnh/ Thành Phố">
+                        <button type="submit">
+                            <i class="icon-search"></i>
+                        </button>
+                    </div>
+
+                    <ul class="list-item">
+                        @{
+                            if (Model.ListProvince != null && Model.ListProvince.Any())
+                            {
+                                foreach (var item in Model.ListProvince)
+                                {
+                                    <li data-id="@item.Provinceid"><a><i class="icon-checked"></i>@item.Provincename</a></li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="item full">
+            <div class="form-field">
+                <input type="text" name="Address" id="address" oninput="MaxLength(this)" maxlength="200">
+                <label for="address">Địa chỉ doanh nghiệp<span style="color: red">*</span></label>
+            </div>
+        </div>
+        <div class="item full">
+            <div class="form-field">
+                <input type="text" name="Saleproduct" id="saleproduct">
+                <label for="saleproduct">Sản phẩm kinh doanh<span style="color: red">*</span></label>
+            </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="email" name="Email" id="Email">
+            <label for="email">Email<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="number" pattern="\d*" oninput="MaxLength(this)" maxlength="10" name="Zaloid" id="Zaloid">
+            <label for="hotline">Hotline<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" name="Weburl" id="Weburl" oninput="MaxLength(this)" maxlength="100">
+            <label for="website">Website</label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" name="Fburl" id="Fburl">
+            <label for="facebook">Facebook</label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="file-upload form-field">
+            <p class="file-upload-txt">Giấy phép kinh doanh<span style="color: red">*</span></p>
+            <button class="btn-upload">
+              <i class="icon-upload"></i>
+              <span class="text-browse">Chọn ảnh</span>
+            </button>
+            <div class="i-pic-upload">
+              <i class="icon-clearfile i-deselect del-gpkd"></i>
+            </div>
+            <input type="file" name="Gpkdsrc" id="Gpkdsrc" class="form-control d-none" accept="image/x-png,image/gif,image/jpeg">
+            <div id="gpkd-error" class="error" style="display: none"></div>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="file-upload form-field">
+            <p class="file-upload-txt">Logo/ hình ảnh đại diện (kích thước 840x840px)<span style="color: red">*</span></p>
+            <button class="btn-upload">
+              <i class="icon-upload"></i>
+              <span class="text-browse">Chọn ảnh</span>
+            </button>
+            <div class="i-pic-upload">
+              <i class="icon-clearfile i-deselect del-logo"></i>
+            </div>
+            <input type="file" name="Logosrc" id="Logosrc" class="form-control d-none" accept="image/x-png,image/gif,image/jpeg">
+            <div id="logo-error" class="error" style="display: none"></div>
+          </div>
+        </div>
+        <div class="item full">
+            <p class="file-upload-txt">Giới thiệu công ty</p>
+            <script>
+                document.isCkeditor = true;
+                document.nametinyMCECkeditor = "tinyMCEregistry";
+                document.nameCkeditor  ="registry";
+            </script>
+          <input type="file" id="registry_upload" multiple style="display: none;" accept="image/jpeg, image/jpg, image/png, image/gif" />
+          <textarea id="registry" name="registry" class="tinymce" style="width: 100%;"></textarea>
+        </div>
+      </div>
+      <div class="form-item">
+        <h3>Thông tin người đại diện</h3>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" name="Representname" id="Representname">
+            <label for="username">Tên người đại diện<span style="color: red">*</span></label>
+          </div>
+        </div>
+        <div class="item full">
+          <div class="form-field">
+            <input type="text" name="Representposition" id="Representposition">
+            <label for="position">Chức vụ<span style="color: red">*</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="boxcaptcha">
+        <div class="g-recaptcha" data-sitekey="@(ketnoicungcau.business.Helpers.ConfigConstants.SiteKeyCaptcha)"></div>
+      </div>
+      <div class="error-general" style="display: none"></div>
+      <button type="submit" class="btn-register">ĐĂNG KÝ</button>
+      <div class="logindiv">
+        <p>Bạn đã có tài khoản?</p>
+        <a href="~/dang-nhap">&nbsp;Đăng nhập tại đây</a>
+      </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/Contents/js/bundle/registry.min.js?v=@rnd"></script>
+    <script src="~/Contents/lib/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/Contents/lib/html5uploader/jquery.html5uploader.js"></script>
+}

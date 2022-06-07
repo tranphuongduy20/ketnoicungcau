@@ -1,0 +1,410 @@
+﻿@using ketnoicungcau.business.Mappings
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.business
+@model ketnoicungcau.vn.ViewModels.vmAddProduct
+
+@{
+    ViewData["Title"] = "Đăng sản phẩm chào mua - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Đăng sản phẩm chào mua - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" href='~/Contents/lib/bootstrap/dist/css/bootstrap.min.css'
+          media="screen" />
+    <link rel="stylesheet" href="~/Contents/lib/datepicker/bootstrap-datepicker.min.css" type="text/css" />
+    @*<link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/datepicker.min.css?v=@rnd">*@
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/Profile/rebootstrap.dev.css?v=@rnd">
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.min.css?v=@rnd">
+    <style>
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+}
+
+@{
+    if (Model != null)
+    {
+        <section>
+            <div class="profile clearfix">
+                @await Html.PartialAsync("~/Views/Profile/Partial/_LeftNavigation.cshtml", "addproduct?type=1")
+                <div class="content">
+                    @{
+                        if (Model.Product == null)
+                        {
+                            <h2>Đăng sản phẩm chào mua</h2>
+                        }
+                        else
+                        {
+                            <h2>Cập nhật phẩm chào mua</h2>
+                        }
+                    }
+                    <div class="content-wrap">
+                        <form action="/" class="register-form form-info" id="frmAddProductBuy">
+                            @Html.AntiForgeryToken()
+                            <div class="form-item">
+                                <h3>Thông tin sản phẩm</h3>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input oninput="MaxLength(this)" maxlength="200" type="text" name="Productname" id="txt_name" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Productname) ? @Model.Product.Productname : "")">
+                                        <label for="txt_name">Tên sản phẩm<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="form-field">
+                                        <div class="filter__item" id="list-cate">
+                                            <input class="filter-input" type="text" name="Categoryid" readonly>
+                                            <label for="category">Danh mục sản phẩm<span style="color: red">*</span></label>
+                                            <div class="filter-main">
+                                                <div class="filter-search">
+                                                    <input type="text" placeholder="Tìm danh mục sản phẩm*">
+                                                    <button type="submit">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </div>
+
+                                                <ul class="list-item">
+                                                    @{
+                                                        if (Model != null && Model.ListCate != null && Model.ListCate.Any())
+                                                        {
+                                                            foreach (var item in Model.ListCate)
+                                                            {
+                                                                <li data-id="@item.Categoryid" class="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Listcategoryid) && Model.Product.Listcategoryid.Contains(item.Categoryid.ToString()) ? "act" : "")"><a><i class="icon-checked"></i>@item.Categoryname</a></li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="filter__item" id="specialties">
+                                            <input class="filter-input" type="text" name="Specialtiesid" readonly>
+                                            <label for="specialties">Đặc sản vùng miền</label>
+                                            <div id="specialties-select" class="filter-main">
+                                                <div class="filter-search">
+                                                    <input type="text" placeholder="Tìm đặc sản vùng miền">
+                                                    <button type="submit">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </div>
+                                                <ul class="list-item">
+                                                    @{
+                                                        if (Model != null && Model.ListSpecialties != null && Model.ListSpecialties.Any())
+                                                        {
+                                                            foreach (var item in Model.ListSpecialties)
+                                                            {
+                                                                <li data-id="@item.Specialtiesid" class="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Listspecialtiesid) && Model.Product.Listspecialtiesid.Contains(item.Specialtiesid.ToString()) ? "act" : "")"><a><i class="icon-checked"></i>@item.Specialtiesname</a></li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <textarea oninput="MaxLength(this)" maxlength="200" name="Shortdescription" id="txt_description" placeholder="Mô tả ngắn sản phẩm*">@(Model.Product != null && Model.Product.Shortdescription != null ? @Model.Product.Shortdescription : "")</textarea>
+                                </div>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <div class="filter__item" id="standard">
+                                            <input class="filter-input" type="text" name="Standardid" readonly>
+                                            <label for="standard">Tiêu chuẩn sản phẩm</label>
+                                            <div id="standard-select" class="filter-main">
+                                                <div class="filter-search">
+                                                    <input type="text" placeholder="Tìm tiêu chuẩn sản phẩm">
+                                                    <button type="submit">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </div>
+                                                <ul class="list-item">
+                                                    @{
+                                                        if (Model != null && Model.ListStandard != null && Model.ListStandard.Any())
+                                                        {
+                                                            foreach (var item in Model.ListStandard)
+                                                            {
+                                                                <li data-id="@item.Standardid" class="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Liststandardid) && Model.Product.Liststandardid.Contains(item.Standardid.ToString()) ? "act" : "")"><a><i class="icon-checked"></i>@item.Standardname</a></li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input oninput="MaxLength(this)" maxlength="100" type="text" name="Orderprocedure" id="orderprocedure" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Orderprocedure) ? @Model.Product.Orderprocedure : "")">
+                                        <label for="orderprocedure">Quy cách đóng gói</label>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="form-field">
+                                        <input type="text" name="Quantity" id="quantity" value="@(Model.Product != null ? @Model.Product.Quantity : "")">
+                                        <label for="quantity">Sản lượng mua<span style="color: red">*</span></label>
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="filter__item" id="baseUnit">
+                                            <input class="filter-input" type="text" name="Unitid" readonly>
+                                            <label for="baseUnit">Đơn vị tính giá<span style="color: red">*</span></label>
+                                            <div id="baseUnit-select" class="filter-main">
+                                                <div class="filter-search">
+                                                    <input type="text" placeholder="Tìm đơn vị tính*">
+                                                    <button type="submit">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </div>
+                                                <ul class="list-item">
+                                                    @{
+                                                        if (Model != null && Model.ListBaseUnit != null && Model.ListBaseUnit.Any())
+                                                        {
+                                                            foreach (var item in Model.ListBaseUnit)
+                                                            {
+                                                                <li data-id="@item.Unitid" class="@(Model.Product != null && Model.Product.Unitid > 0 && Model.Product.Unitid == item.Unitid ? "act" : "")"><a><i class="icon-checked"></i>@item.Unitname</a></li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="form-field">
+                                        <div class="filter__item" id="isbuy">
+                                            <input class="filter-input" type="text" name="Isbuy" readonly>
+                                            <label for="isbuy">Nhu cầu mua<span style="color: red">*</span></label>
+                                            <div id="isbuy-select" class="filter-main">
+                                                <ul class="list-item">
+                                                    <li data-id="1" class="@(Model.Product != null && Model.Product.Isbuy != null && Model.Product.Isbuy == 1 ? "act" : "")"><a><i class="icon-checked"></i>Thường xuyên</a></li>
+                                                    <li data-id="2" class="@(Model.Product != null && Model.Product.Isbuy != null && Model.Product.Isbuy == 2 ? "act" : "")"><a><i class="icon-checked"></i>Đột xuất</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="filter__item" id="isfrequency">
+                                            <input class="filter-input" type="text" name="Frequency" readonly>
+                                            <label for="isfrequency">Tần suất mua</label>
+                                            <div id="isfrequency-select" class="filter-main">
+                                                <ul class="list-item">
+                                                    <li data-id="1" class="@(Model.Product != null && Model.Product.Isfrequency != null && Model.Product.Isfrequency == 1 ? "act" : "")"><a><i class="icon-checked"></i>Hàng ngày</a></li>
+                                                    <li data-id="2" class="@(Model.Product != null && Model.Product.Isfrequency != null && Model.Product.Isfrequency == 2 ? "act" : "")"><a><i class="icon-checked"></i>Hàng tuần</a></li>
+                                                    <li data-id="3" class="@(Model.Product != null && Model.Product.Isfrequency != null && Model.Product.Isfrequency == 3 ? "act" : "")"><a><i class="icon-checked"></i>Hàng tháng</a></li>
+                                                    <li data-id="4" class="@(Model.Product != null && Model.Product.Isfrequency != null && Model.Product.Isfrequency == 4 ? "act" : "")"><a><i class="icon-checked"></i>Hàng quý</a></li>
+                                                    <li data-id="5" class="@(Model.Product != null && Model.Product.Isfrequency != null && Model.Product.Isfrequency == 5 ? "act" : "")"><a><i class="icon-checked"></i>Hàng năm</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="form-field" id="Date">
+                                        @{
+                                            var date = "";
+                                            if (Model.Product != null && Model.Product.Begindate.HasValue && Model.Product.Begindate != DateTime.MinValue)
+                                            {
+                                                var format = "dd/MM/yyyy";
+                                                date = Model.Product.Begindate.Value.ToString(format);
+                                            }
+                                        }
+                                        <input type="text" id="txtSelectedDate" name="Begindate" placeholder="dd/mm/yyyy" value="@date" />
+                                        <label class="always-freeze" for="Begindate">Thời gian mua</label>
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="filter__item" id="province">
+                                            <input class="filter-input" type="text" name="Provinceid" readonly>
+                                            <label for="province">Khu vực</label>
+                                            <div id="province-select" class="filter-main">
+                                                <div class="filter-search">
+                                                    <input type="text" placeholder="Tìm khu vực">
+                                                    <button type="submit">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </div>
+                                                <ul class="list-item">
+                                                    @{
+                                                        if (Model != null && Model.ListProvince != null && Model.ListProvince.Any())
+                                                        {
+                                                            foreach (var item in Model.ListProvince)
+                                                            {
+                                                                <li data-id="@item.Provinceid" class="@(Model.Product != null && Model.Product.Productid > 0 && Model.Product.Provinceid == item.Provinceid ? "act" : "")"><a><i class="icon-checked"></i>@item.Provincename</a></li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item full">
+                                    @{
+                                        if (Model.Product != null && Model.Images != null && Model.Images.Any())
+                                        {
+                                            <div class="form-field">
+                                                <p class="">Hỉnh ảnh sản phẩm (kích thước 1020x576px)</p>
+                                                <div class="uploadmulti__box">
+                                                    <div class="uploadmulti__img-wrap">
+                                                        @{
+                                                            foreach (var item in Model.Images)
+                                                            {
+                                                                <div class='uploadmulti__img-box'>
+                                                                    <div style='background-image: url("@item.Image")' data-path='@item.Image' class='img-bg'>
+                                                                        <div class='uploadmulti__img-close'><i class='icon-clearfile'></i></div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                        <!-- Thêm HTML -->
+                                                        <label class="uploadmulti__btn btn-upload-buy" style="display: none">
+                                                            <i class="icon-upload"></i>Chọn ảnh
+                                                            <input name="Productimage" id="Productimage" type="file" data-max_length="20" class="uploadmulti__inputfile">
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-field">
+                                                <p class="">Hỉnh ảnh sản phẩm (kích thước 1020x576px)</p>
+                                                <div class="uploadmulti__box">
+                                                    <div class="uploadmulti__img-wrap">
+                                                        <!-- Thêm HTML -->
+                                                        <label class="uploadmulti__btn btn-upload-buy">
+                                                            <i class="icon-upload"></i>Chọn ảnh
+                                                            <input name="Productimage" id="Productimage" type="file" data-max_length="20" class="uploadmulti__inputfile">
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="error-general" id="error-maxLen" style="display: none"></div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <h3>Mô tả sản phẩm, dịch vụ<span style="color: red">*</span></h3>
+                                <div class="item full">
+                                    <script>
+                                        document.isCkeditor = true;
+                                        document.nametinyMCECkeditor = "tinyMCEregistry";
+                                        document.nameCkeditor = "registry";
+                                    </script>
+                                    <input type="file" id="registry_upload" multiple style="display: none;" accept="image/jpeg, image/jpg, image/png, image/gif" />
+                                    <textarea id="registry" name="registry" class="tinymce" style="width: 100%;">@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Description) ? @Model.Product.Description : "")</textarea>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <h3>Thông tin kết nối</h3>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input oninput="MaxLength(this)" maxlength="100" type="text" name="Fullname" id="username" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Fullname) ? @Model.Product.Fullname : "")">
+                                        <label for="username">Họ và tên<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input oninput="MaxLength(this)" maxlength="100" type="text" name="Position" id="office" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Positions) ? @Model.Product.Positions : "")">
+                                        <label for="office">Chức vụ<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input type="text" name="Phonenumber" id="tel" oninput="MaxLength(this)" maxlength="10" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Phonenumber) ? @Model.Product.Phonenumber : "")">
+                                        <label for="tel">Số điện thoại<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="item full">
+                                    <div class="form-field">
+                                        <input type="email" name="Email" id="email" value="@(Model.Product != null && !string.IsNullOrEmpty(Model.Product.Email) ? @Model.Product.Email : "")">
+                                        <label for="email">Email liên hệ</label>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="radio">
+                                        <p>Trạng thái</p>
+                                        <div id="show" class="radio-item act-check">
+                                            <span></span>
+                                            Hiển thị
+                                        </div>
+                                        <div id="hide" class="radio-item">
+                                            <span></span>
+                                            Ẩn
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="error-general" class="error-general" style="display: none"></div>
+                            @{
+                                if (Model.Product == null)
+                                {
+                                    <button type="submit" class="btn-register">ĐĂNG SẢN PHẨM</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn-register">CẬP NHẬT SẢN PHẨM</button>
+                                }
+                            }
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+
+@section Scripts {
+    @{
+        var listImg = "";
+        var listStrImg = new List<string>();
+        if (Model != null && Model.Product != null && Model.Images != null && Model.Images.Any())
+        {
+            foreach (var item in Model.Images)
+            {
+                listStrImg.Add(item.Image);
+            }
+            listImg = string.Join("|", listStrImg);
+        }
+    }
+    <script>
+        var query = {
+            AddType: @Model.Type,
+            Productid: @(Model.Product != null ? Model.Product.Productid : 0),
+            ProductImg: '@listImg',
+        };
+    </script>
+    @*<script type="text/javascript" src='~/lib/jquery/dist/jquery.min.js'></script>
+        <script type="text/javascript" src='~/lib/bootstrap/dist/js/bootstrap.min.js'></script>
+        <script src="~/lib/datepicker/bootstrap-datepicker.min.js"></script>*@
+    @*<script src="~/js/Profile/common.dev.js?v=@rnd"></script>
+        <script src="~/js/Profile/addproduct.dev.js?v=@rnd"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js?v=@rnd"></script>*@
+    <script src="~/Contents/lib/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/Contents/js/bundle/addproduct.min.js?v=@rnd"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#txtSelectedDate').datepicker({
+                format: "dd/mm/yyyy",
+                language: "vi"
+            });
+        });
+    </script>
+}

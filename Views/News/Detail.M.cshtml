@@ -1,0 +1,111 @@
+@model ketnoicungcau.vn.ViewModels.vmNewsDetail
+
+@{
+    var title = Model.News.Title;
+    Layout = "_Layout.M";
+    ViewData["Title"] = title;
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = title,
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    @if (true) // check not production
+    {
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/News/news.M.dev.css?v=@rnd">
+        <link rel="stylesheet" type="text/css" href="~/Contents/css/Category/owl.carousel.css">
+    }
+}
+@section Scripts
+{
+    <script src="~/Contents/js/bundle/news.detail.M.min.js?v=@rnd"></script>
+    <script src="~/Contents/lib/OwlCarousel2/owl.carousel.min.js?v=@rnd"></script>
+}
+
+
+@if (Model != null)
+{
+    <div class="blog">
+        <div class="box-blog">
+            @if (Model.News != null)
+            {
+                if (Model.News.Newstype == 2)
+                {
+                    <div class="blog__detail">
+                        <h1>@Model.News.Title</h1>
+                        <p class="time">@Model.News.Createddate?.ToString("dd/MM/yyyy")</p>
+                        <div class="item-img">
+                            <iframe width="480" height="300" src="@Model.News.Video"></iframe>
+                        </div>
+                        <div class="content">
+                            @Html.Raw(Model.News.Content.Replace("../", "/cms/"))
+                        </div>
+                    </div>
+                }
+                else if (Model.News.Newstype == 3)
+                {
+                    <div class="blog__detail">
+                        <h1>@Model.News.Title</h1>
+                        <p class="time">@Model.News.Createddate?.ToString("dd/MM/yyyy")</p>
+                        <div class="thubmail-slide">
+                            <div class="counter"></div>
+                            <div class="click-fullscreen"></div>
+                            <div class="click-arrow">
+                                <div class="prev"></div>
+                                <div class="next"></div>
+                            </div>
+
+                            <div class="owl-carousel slider-img" id="slider-defaults">
+                                <div class="item-img"> <img src="@Model.News.Image" width="900" height="508"></div>
+                                @foreach (var item in Model.News.ListImage)
+                                {
+                                    <div class="item-img"> <img src="@item.Image" width="900" height="508"></div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            @Html.Raw(Model.News.Content.Replace("../", "/cms/"))
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="blog__detail">
+                        <h1>@Model.News.Title</h1>
+                        <p class="time">@Model.News.Createddate?.ToString("dd/MM/yyyy")</p>
+                        <div class="item-img">
+                            <img src="@Model.News.Image" />
+                        </div>
+                        <div class="content">
+                            @Html.Raw(Model.News.Content.Replace("../", "/cms/"))
+                        </div>
+                    </div>
+                }
+            }
+            @if (Model.ListOtherNews?.Count > 0)
+            {
+                <div class="blog-related">
+                    <p class="related-ttl">Tin tức khác</p>
+                    <ul class="listblog">
+                        @foreach (var item in Model.ListOtherNews)
+                        {
+                            <partial name="~/Views/News/Partial/_NewsItem.cshtml" model="item" />
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+}

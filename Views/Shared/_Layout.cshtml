@@ -1,0 +1,30 @@
+﻿@using ketnoicungcau.vn.ViewComponents
+@using ketnoicungcau.business.UI
+@{
+    var rnd = new Random().Next();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    @RenderSection("metaHeader", required: false)
+    <link rel="stylesheet" href="~/Contents/css/bundle/global.min.css?v=@rnd" />
+    <link href="~/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    @RenderSection("Css", required: false)
+</head>
+<body>
+    @await Component.InvokeAsync("MasterPage", new MasterPageViewComponent.ReqMasterPage { viewName = "Header", isHeader = true })
+    @RenderBody()
+    @await Component.InvokeAsync("MasterPage", new MasterPageViewComponent.ReqMasterPage { viewName = "Footer", isHeader = false })
+
+    <script src="~/Contents/js/bundle/global.min.js?v=@rnd"></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=vi" async defer></script>
+    <script type="text/javascript">
+            var isMobile = false;
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿@model ketnoicungcau.business.Model.News
+
+
+@if (Model.Categoryid == 12 && Model.Displayorder == 1)
+{
+    <div class="info">
+        <div class="info-main">
+            <div class="info__slider fotorama" data-autoplay="3000" data-click="false">
+                <img src="@Model.Image" alt="Ketnoicungcau">
+                @foreach (var item in Model.ListImage)
+                {
+                    <img src="@item.Image" alt="Ketnoicungcau">
+                }
+            </div>
+            <div class="info__content">
+                <h4>@Model.Title</h4>
+                <p>@Html.Raw(Model.Content.Length > 1200 ? string.Format("{0}...", Model.Content.Substring(0, 1200)) : Model.Content)</p>
+            </div>
+        </div>
+    </div>
+}
+

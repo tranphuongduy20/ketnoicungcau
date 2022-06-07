@@ -1,0 +1,46 @@
+﻿@using ketnoicungcau.business.ModelWeb
+@using ketnoicungcau.business.Extensions
+@model List<ProductWeb>
+
+@if (Model != null && Model.Count > 0)
+{
+    var productType = Model.FirstOrDefault().Type;
+
+    @foreach (var item in Model)
+    {
+        if (productType == ketnoicungcau.business.Enums.ProductType.Sell)
+        {
+            <li class="item">
+                <a href="javascript:void(0)">
+                    <div class="img">
+                        <img src="@item.Images.FirstOrDefault().Image.BuildImgUrl()" alt="@item.Title">
+                    </div>
+                    <div class="content">
+                        <p class="txt-company">@item.Company.Companyname</p>
+                        <h3 class="txt-name">@item.Productname</h3>
+                        <p class="txt-weight">@item.Demand</p>
+                        <p class="txt-note">@item.Description</p>
+                    </div>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="item">
+                <a href="javascript:void(0)">
+                    <div class="img">
+                        <img src="@item.Images.FirstOrDefault().Image.BuildImgUrl()" alt="@item.Title">
+                    </div>
+                    <div class="content">
+                        <p class="txt-company">@item.Company.Companyname</p>
+                        <h3 class="txt-title">@item.Title</h3>
+                        <p class="txt-painted">@item.Description</p>
+                        <p class="txt-demand">Nhu cầu:<span>@item.Demand</span></p>
+                        <p class="txt-time">Thời gian mua:<span></span></p>
+                    </div>
+                </a>
+            </li>
+        }
+    }
+}
+

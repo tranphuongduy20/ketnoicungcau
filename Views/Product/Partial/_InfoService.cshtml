@@ -1,0 +1,18 @@
+﻿@model ketnoicungcau.vn.ViewModels.vmProductDetail
+
+@if (Model != null && Model.Product.Company != null) {
+    <div class="info">
+        @if (string.IsNullOrEmpty(Model.Product.Company.Companyname) == false) {
+            <p class="info-company">@Model.Product.Company.Companyname</p>
+        }
+        @if (string.IsNullOrEmpty(Model.Product.Shortdescription) == false) {
+            <h2 class="info-name">@Model.Product.Shortdescription
+                <partial name="~/Views/Product/Partial/_WishButton.cshtml" model=@Model />
+            </h2>
+        }
+        @if (string.IsNullOrEmpty(Model.Product.Company.Address) == false) {
+            <p class="info-address">Địa chỉ: @Model.Product.Company.Address</p>
+        }
+        <partial name="~/Views/Product/Partial/_Price.cshtml" model="@Model" />
+    </div>
+} 

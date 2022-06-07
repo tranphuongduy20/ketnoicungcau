@@ -1,0 +1,84 @@
+﻿@using ketnoicungcau.business.Enums
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model ketnoicungcau.vn.ViewModels.RequestProductListView
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+@{
+    if (Model != null && Model.ListProduct.Any())
+    {
+        if (_workContext.IsMobile)
+        {
+            foreach (var item in Model.ListProduct)
+            {
+                if (item != null && item.Productid > 0)
+                {
+                    @await Html.PartialAsync("~/Views/Profile/Partial/ProductList/_productItem.cshtml", item)
+                }
+            }
+        }
+        else
+        {
+            if (Model.IsAjax == false)
+            {
+                if (Model.ListProduct.FirstOrDefault()?.Type == ProductType.Buy)
+                {
+                    <tr>
+                        <th style="text-align: center;">
+                            <span>ID</span>
+                        </th>
+                        <th>
+                            <span style="width: 90px;">Hiển thị</span>
+                        </th>
+                        <th>
+                            <span style="padding-left: 40px; text-align: left;">Sản phẩm/dịch vụ</span>
+                        </th>
+                        <th>
+                            <span>Thời gian mua</span>
+                        </th>
+                        <th>
+                            <span>Thời gian đăng</span>
+                        </th>
+                        <th>
+                            <span>Nhu cầu</span>
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <th style="text-align: center;">
+                            <span>ID</span>
+                        </th>
+                        <th>
+                            <span style="width: 90px;">Hiển thị</span>
+                        </th>
+                        <th>
+                            <span>Sản phẩm/dịch vụ</span>
+                        </th>
+
+                        <th>
+                            <span>Thời gian đăng</span>
+                        </th>
+                        <th>
+                            <span>Giá</span>
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                }
+            }
+            foreach (var item in Model.ListProduct)
+            {
+                if (item != null && item.Productid > 0)
+                {
+                    @await Html.PartialAsync("~/Views/Profile/Partial/ProductList/_productItem.cshtml", item)
+                }
+            }
+        }
+    }
+}

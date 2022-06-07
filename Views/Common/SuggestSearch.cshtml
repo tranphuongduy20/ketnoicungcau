@@ -1,0 +1,141 @@
+﻿@using ketnoicungcau.business.Extensions
+@model ketnoicungcau.business.ModelWeb.SuggestSearch
+@{
+    /*DEFINE*/
+    const int MIN_TO_SHOW_VIEW_MORE = 2;
+    //---------
+}
+
+
+@{
+    if (Model != null)
+    {
+        <div class="search-main">
+            @{
+                if (Model.ListProductSell != null && Model.ListProductSell.Any())
+                {
+                   
+                    <div class="search-item">
+                        <div>
+                            <p class="search-txt">Sản phẩm chào bán</p>
+                            @{
+                                if (Model.TotalProductSell > MIN_TO_SHOW_VIEW_MORE)
+                                {
+                                    <a href="/tim-kiem?kw=@Model.Keyword&SearchType=2">Xem thêm</a>
+                                }
+                            }
+                        </div>
+
+                        <ul class="search-product">
+                            @{
+                                foreach (var item in Model.ListProductSell)
+                                {
+                                    <li>
+                                        <a href="@item.GenProductUrl()">
+                                            <div class="img">
+                                                @if (item.Images != null && item.Images.Any())
+                                                {
+                                                    <img src="@item.Images.FirstOrDefault().Image" alt="@item.Productname">
+                                                }
+                                                else
+                                                {
+                                                    <img src="@item.Company.Logosrc" alt="@item.Company.Companyname">
+                                                }
+                                            </div>
+                                            <div class="ct">
+                                                <h3 class="txt-name">@item.Productname</h3>
+                                                <p class="txt-cpn">@item.Company.Companyname</p>
+                                                <p class="txt-price">@(item.Ishideprice == 1 ? "Ẩn giá" : item.Price)</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+            }
+
+            @{
+                if (Model.ListProductBuy != null && Model.ListProductBuy.Any())
+                {
+                    <div class="search-item">
+                        <p class="search-txt">Sản phẩm chào mua</p>
+                        @{
+                            if (Model.TotalProductBuy > MIN_TO_SHOW_VIEW_MORE)
+                            {
+                                <a href="/tim-kiem?kw=@Model.Keyword&SearchType=1">Xem thêm</a>
+                            }
+                        }
+                        <ul class="search-buy">
+                            @{
+                                foreach (var item in Model.ListProductBuy)
+                                {
+                                    <li>
+                                        <a href="@item.GenProductUrl()">
+                                            <div class="img">
+                                                @if (item.Images != null && item.Images.Any())
+                                                {
+                                                    <img src="@item.Images.FirstOrDefault().Image" alt="@item.Productname">
+                                                }
+                                                else
+                                                {
+                                                    <img src="@item.Company.Logosrc" alt="@item.Company.Companyname">
+                                                }
+                                            </div>
+                                            <div class="ct">
+                                                <p class="txt01">Cần tìm đối tác cung cấp: @item.Productname</p>
+                                                <p class="txt02">@item.Company.Companyname</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                }
+            }
+
+
+            @{
+                if (Model.ListCompany != null && Model.ListCompany.Any())
+                {
+                    <div class="search-item">
+                        <p class="search-txt">Doanh nghiệp</p>
+                        @{
+                            if (Model.TotalCompany > MIN_TO_SHOW_VIEW_MORE)
+                            {
+                                <a href="/tim-kiem?kw=@Model.Keyword&SearchType=3">Xem thêm</a>
+                            }
+                        }
+                        <ul class="search-company">
+                            @{
+                                foreach (var item in Model.ListCompany)
+                                {
+                                    <li>
+                                        <a href="@item.GenCompanyUrl()">
+                                            <div class="img">
+                                                @if (!string.IsNullOrEmpty(item.Logosrc))
+                                                {
+                                                    <img src="@item.Logosrc" alt="@item.Companyname">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/images/noimg-product.png" alt="">
+                                                }
+                                            </div>
+                                            <div class="ct">
+                                                <h3 class="txt-title">@item.Companyname</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+    }
+}

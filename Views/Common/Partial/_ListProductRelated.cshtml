@@ -1,0 +1,17 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.ProductWeb>
+@using ketnoicungcau.business
+@using ketnoicungcau.business.Extensions
+
+<div class="listproduct listproduct-related owl-carousel">
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <li class="item">
+                    <partial name="~/Views/Common/BoxItem/BoxSell.cshtml" model="@item" />
+                </li>
+            }
+        }
+    }
+</div>

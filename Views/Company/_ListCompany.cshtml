@@ -1,0 +1,21 @@
+﻿@using ketnoicungcau.business.ModelWeb
+@using ketnoicungcau.business.Extensions
+@model List<CompanyWeb>
+
+@if (Model != null && Model.Count > 0)
+{
+    @foreach (var company in Model)
+    {
+        <li class="item">
+            <a href="@company.GenCompanyUrl()">
+                <div class="img">
+                    <img src="@company.Logosrc.BuildImgUrl()" alt="@company.Companyname">
+                </div>
+                <div class="content">
+                    <p class="title">@company.Companyname</p>
+                </div>
+            </a>
+        </li>
+    }
+}
+

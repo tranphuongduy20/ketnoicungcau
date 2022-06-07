@@ -1,0 +1,26 @@
+﻿@model ketnoicungcau.business.ModelWeb.HeaderSEO
+
+<title>@Html.Raw(Model.Title)</title>
+<meta content="INDEX,FOLLOW" name="robots" />
+@if (!string.IsNullOrEmpty(Model.Keywords))
+{
+    <meta name="keywords" content="@Html.Raw(Model.Keywords)" />
+}
+@if (!string.IsNullOrEmpty(Model.Description))
+{
+    <meta name="description" content="@Html.Raw(Model.Description)" />
+    <meta property="og:description" content="@Html.Raw(Model.Description)" />
+}
+@if (!string.IsNullOrEmpty(Model.Title))
+{
+    <meta property="og:title" content="@Html.Raw(Model.Title)" />
+    <meta property="og:image:alt" content="@Html.Raw(Model.Title)" />
+}
+@if (!string.IsNullOrEmpty(Model.Canonical))
+{
+    <link rel="canonical" href="@Html.Raw(Model.Canonical)" />
+}
+@if (!string.IsNullOrEmpty(Model.OgImageUrl))
+{
+    <meta property="og:image" content="@Html.Raw(Model.OgImageUrl)" />
+}

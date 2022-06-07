@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  *{
+    box-sizing: border-box;
+  }
+  img {
+    border: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    transition: .3s;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  .clr {
+    clear: both;
+  }
+  .clearfix {
+      display: block;
+  }
+  .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  body, input, button, option, textarea, label, select, legend, h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font: 14px/18px Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #0E0E0E;
+    outline: none;
+  }
+
+/* ----------- 400 ----------*/
+.error-404 {
+    background-color: #3A7BD8;
+    height: 100vh;
+    padding-top: 128px;
+    text-align: center;
+}
+.error-404 .txt01 {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 28px;
+}
+.error-404 img {
+    display: block;
+    max-width: 688px;
+    margin: 0 auto;
+    width: 100%;
+}
+.error-404 .btn-backhome {
+    background-color: #FAFF00;
+    border: 1px solid #AAA;
+    border-radius: 8px;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 21px;
+    max-width: 275px;
+    margin: 0 auto;
+    padding: 12px 10px;
+}
+/* ----------- / 400 ----------*/
+
+
+
+/* ----------- 500 ----------*/
+.error-500 {
+    height: 100vh;
+    padding-top: 120px;
+    text-align: center;
+}
+.error-500 .txt01 {
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 54px;
+}
+.error-500 .txt02 {
+    color: #000;
+    font-size: 24px;
+    margin-top: 15px;
+}
+.error-500 img {
+    display: block;
+    max-width: 600px;
+    margin: 20px auto 0;
+    width: 100%;
+}
+/* ----------- / 500 ----------*/
+
+
+/* ----------- Responsive ----------*/
+@media only screen and (max-width: 640px) {
+    .error-404 {
+        padding-top: 60px;
+    }
+    .error-404 img {
+        max-width: 349px;
+        margin: 25px auto 10px;
+    }
+    .error-500 {
+        padding-top: 45px;
+    }
+    .error-500 .txt01 {
+        font-size: 28px;
+    }
+    .error-500 .txt02 {
+        font-size: 20px;
+    }
+    .error-500 img {
+        max-width: 330px;
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .error-404 .txt01 {
+        font-size: 14px;
+        line-height: 26px;
+    }
+}
+/* ----------- / Responsive ----------*/

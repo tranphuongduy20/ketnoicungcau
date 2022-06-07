@@ -1,0 +1,183 @@
+﻿@using System.Web
+@using ketnoicungcau.business.Enums
+@using Microsoft.Extensions.Options
+@model ketnoicungcau.vn.ViewModels.vmSearch
+@{
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Kết quả tìm kiếm " + Model.Filter.KeyWord;
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Kết quả tìm kiếm " + @Model.Filter.KeyWord,
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/listing.M.min.css?v=@rnd">
+}
+
+@if ((Model != null && Model.ListCompany != null && Model.ListCompany.Count > 0) || (Model != null && Model.ListProduct != null && Model.ListProduct.Count > 0))
+{
+    <div class="txt-showsearch">
+        @{
+            var type = "";
+            switch (@Model.Filter.SearchType)
+            {
+                case SearchType.Sell:
+                    type = "chào bán";
+                    break;
+                case SearchType.Buy:
+                    type = "chào mua";
+                    break;
+                case SearchType.Company:
+                    type = "doanh nghiệp";
+                    break;
+            }
+        }
+        <p id="total">Có @Model.Total kết quả @type ‘@Model.Filter.KeyWord’</p>
+    </div>
+    <div class="tab-search">
+        <div class="tab-common">
+            <section>
+                <ul class="tab-commonlist">
+                    <li id="tab-sell" class="@(Model.Filter.SearchType == SearchType.Sell ? "is-active" : "")" data-id="tab1">Chào bán</li>
+                    <li id="tab-buy" class="@(Model.Filter.SearchType == SearchType.Buy ? "is-active" : "")" data-id="tab2">Chào mua</li>
+                    <li id="tab-company" class="@(Model.Filter.SearchType == SearchType.Company ? "is-active" : "")" data-id="tab3">Doanh nghiệp</li>
+                </ul>
+            </section>
+        </div>
+        <section class="tab-all">
+
+            <div class="tab-content @(Model.Filter.SearchType == SearchType.Sell ? "show-active" : "")" id="tab1">
+                <ul id="listproduct-sell" class="listproduct">
+                    @{
+                        if (Model.Filter.SearchType == SearchType.Sell)
+                        {
+                            @await Html.PartialAsync("~/Views/Common/Partial/_ListProduct.cshtml", Model.ListProduct)
+                        }
+                    }
+
+                </ul>
+                <a id="readmore-sell" onclick="viewMoreProduct(2)" class="btn-readmore arrowB"><span>Xem thêm @Model.Left sản phẩm</span></a>
+            </div>
+
+            <div class="tab-content  @(Model.Filter.SearchType == SearchType.Buy ? "show-active" : "")" id="tab2">
+                <ul id="listproduct-buy" class="listbuy">
+                    @{
+                        if (Model.Filter.SearchType == SearchType.Buy)
+                        {
+                            @await Html.PartialAsync("~/Views/Common/Partial/_ListProduct.cshtml", Model.ListProduct)
+                        }
+                    }
+
+                </ul>
+                <a id="readmore-buy" onclick="viewMoreProduct(1)" class="btn-readmore arrowR"><span>Xem thêm @Model.Left sản phẩm</span></a>
+            </div>
+
+            <div class="tab-content  @(Model.Filter.SearchType == SearchType.Company ? "show-active" : "")" id="tab3">
+                <ul class="listcompany">
+                    @{
+                        if (Model.Filter.SearchType == SearchType.Company)
+                        {
+                            @await Html.PartialAsync("~/Views/Common/Partial/_ListCompany.cshtml", Model.ListCompany)
+                        }
+                    }
+                </ul>
+                <a id="readmore-company" onclick="viewMoreCompany()" href="#" class="btn-readmore arrowB"><span>Xem thêm @Model.Left doanh nghiệp</span></a>
+            </div>
+        </section>
+
+    </div>
+
+}
+else
+{
+    @await Html.PartialAsync("~/Views/Search/Partial/_SearchEmpty.cshtml", Model.Filter.KeyWord)
+}
+
+
+
+
+@section Scripts {
+    @if (Model != null)
+    {
+        var keyword = @Html.Raw(HttpUtility.JavaScriptStringEncode(Model.Filter.KeyWord));
+        <script type="text/javascript">
+            document.isClickPaging = false;
+
+            var query = {
+                @*CateId: @Model.CateCurrentId,*@
+                SearchUrl: window.location.href,
+                PageSize: @Model.Filter.PageSize,
+                PageIndex: @Model.Filter.PageIndex,
+                TotalCount: '@Model.Total',
+                @*SiteID: @Model.SiteID,*@
+                IsRunLive : '@Model.IsRunLive',
+                IsMobile: '@Model.IsMobile',
+                StrListCategory: '',
+                kw: '@keyword',
+            };
+            @{
+                var totalBuy = 0;
+                var totalSell = 0;
+                var totalCompany = 0;
+                if (Model.Filter.SearchType == SearchType.Buy)
+                    totalBuy = Model.Total;
+                else if (Model.Filter.SearchType == SearchType.Sell)
+                    totalSell = Model.Total;
+                else if (Model.Filter.SearchType == SearchType.Company)
+                    totalCompany = Model.Total;
+
+            }
+            //define
+            var typeBuy = 1;
+            var typeSell = 2;
+            var typeCompany = 3;
+            var sizeSell = 12;
+            var sizeBuy = 8;
+            var sizeCompany = 15;
+            var totalProductBuy = @totalBuy;
+            var totalProductSell = @totalSell;
+            var totalCompany = @totalCompany;
+            //
+
+            var searchType = @((int)Model.Filter.SearchType);
+            var left = @Model.Left;
+            var btnSell = $('#readmore-sell');
+            var btnBuy = $('#readmore-buy');
+            var btnCompany = $('#readmore-company');
+
+            if (searchType === typeSell) {
+                btnBuy.hide();
+                btnCompany.hide();
+                if (left === 0)
+                    btnSell.hide();
+            }
+            else if (searchType === typeBuy) {
+                btnSell.hide();
+                btnCompany.hide();
+                if (left === 0)
+                    btnBuy.hide();
+            }
+            else if (searchType === typeCompany) {
+                btnBuy.hide();
+                btnSell.hide();
+                if (left === 0)
+                    btnCompany.hide();
+            }
+
+        </script>
+    }
+
+    <script src="~/Contents/js/bundle/search.min.js?v=@rnd"></script>
+}
+

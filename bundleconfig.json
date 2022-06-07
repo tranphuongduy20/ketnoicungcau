@@ -1,0 +1,303 @@
+[
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/global.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/lib/fotorama/fotorama.css",
+      "wwwroot/Contents/lib/OwlCarousel2/assets/owl.carousel.css",
+      "wwwroot/Contents/css/animate.dev.css",
+      "wwwroot/Contents/css/Global/global.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/global.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/lib/fotorama/fotorama.css",
+      "wwwroot/Contents/lib/OwlCarousel2/assets/owl.carousel.css",
+      "wwwroot/Contents/css/animate.dev.css",
+      "wwwroot/Contents/css/Global/global.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/home.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Home/home.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/home.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Home/home.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/company.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Company/company.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/company.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Company/company.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/shopping.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Shopping/shopping.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/shopping.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Shopping/shopping.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/other.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Other/other.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/other.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Other/other.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/news.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/News/news.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/news.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/News/news.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/listing.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Listing/listing.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/listing.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Listing/listing.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/faq.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/FAQ/faq.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/faq.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/FAQ/faq.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/detail.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Detail/detail.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/detail.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Detail/detail.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/profile.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Profile/profile.dev.css",
+      "wwwroot/Contents/css/Profile/registry.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/profile.M.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/css/Profile/profile.M.dev.css",
+      "wwwroot/Contents/css/Profile/registry.M.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/global.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/lib/jquery/dist/jquery.min.js",
+      "wwwroot/Contents/lib/lazysizes/lazysizes.min.js",
+      "wwwroot/Contents/js/Common/common.dev.js",
+      "wwwroot/Contents/js/Login/login.dev.js",
+      "wwwroot/Contents/lib/jquery-validation/dist/jquery.validate.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/global.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/lib/jquery/dist/jquery.min.js",
+      "wwwroot/Contents/lib/lazysizes/lazysizes.min.js",
+      "wwwroot/Contents/js/Common/common.M.dev.js",
+      "wwwroot/Contents/js/Login/login.M.dev.js",
+      "wwwroot/Contents/lib/jquery-validation/dist/jquery.validate.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/category.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Category/owl.carousel.min.js",
+      "wwwroot/Contents/js/Category/category.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/detail.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Category/owl.carousel.min.js",
+      "wwwroot/Contents/js/Detail/detail.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/detail.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Category/owl.carousel.min.js",
+      "wwwroot/Contents/js/Detail/detail.M.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/faq.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/FAQ/faq.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/commonprofile.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Profile/common.dev.js",
+      "wwwroot/Contents/lib/html5uploader/jquery.html5uploader.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/profile.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/bundle/commonprofile.min.js",
+      "wwwroot/Contents/js/Profile/profile.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/changepassword.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Profile/changepassword.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/addproduct.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/lib/bootstrap/dist/js/bootstrap.min.js",
+      "wwwroot/Contents/lib/datepicker/bootstrap-datepicker.min.js",
+      "wwwroot/Contents/js/bundle/commonprofile.min.js",
+      "wwwroot/Contents/js/Profile/addproduct.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/productlist.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/bundle/commonprofile.min.js",
+      "wwwroot/Contents/js/Profile/productlist.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/mywork.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Profile/mywork.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/registry.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Registry/registry.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/search.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Search/search.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/search.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Search/search.M.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/css/bundle/home.min.css",
+    "inputFiles": [
+      "wwwroot/Contents/lib/OwlCarousel2/assets/owl.carousel.min.css",
+      "wwwroot/Contents/lib/OwlCarousel2/assets/owl.theme.default.min.css",
+      "wwwroot/Contents/css/Home/home.dev.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/home.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/lib/OwlCarousel2/owl.carousel.min.js",
+      "wwwroot/Contents/js/Home/home.dev.js",
+      "wwwroot/Contents/lib/fotorama/fotorama.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/home.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/lib/OwlCarousel2/owl.carousel.min.js",
+      "wwwroot/Contents/js/Home/home.M.dev.js",
+      "wwwroot/Contents/lib/fotorama/fotorama.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/shopping.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Shopping/shopping.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/company.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Company/company.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/company.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/Company/company.M.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/news.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/News/news.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/news.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/News/news.M.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/news.detail.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/News/news.detail.dev.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Contents/js/bundle/news.detail.M.min.js",
+    "inputFiles": [
+      "wwwroot/Contents/js/News/news.detail.M.dev.js"
+    ]
+  }
+]

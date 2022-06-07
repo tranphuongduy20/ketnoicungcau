@@ -1,0 +1,57 @@
+﻿@using ketnoicungcau.vn.ViewComponents
+
+<div class="bgcover-full"></div>
+<div class="preloader">
+    <div class="loaderweb"></div>
+</div>
+<!-- Header -->
+<header>
+    <p class="header-text">SỞ CÔNG THƯƠNG THÀNH PHỐ HỒ CHÍ MINH - WEBSITE KẾT NỐI CUNG CẦU </p>
+    <section>
+        <div class="header-main clearfix">
+            <a href="/" class="header-logo">
+                <i class="icon-logo"></i>
+            </a>
+            <form class="header-search">
+                <input type="text" placeholder="Tìm sản phẩm, nhà cung cấp...">
+                <div class="clear-search">
+                    <i class="icon-clear-search"></i>
+                </div>
+                <button type="submit" class="submit-search">
+                    <i class="icon-search"></i>
+                </button>
+                <!--Search show-->
+                <div class="search-show">
+
+                </div>
+                <!--/Search show-->
+            </form>
+            <div class="header-box clearfix">
+                <a href="tel:(+8428)38296322" class="boxitem boxitem-tel">
+                    <i class="icon-tel"></i>
+                    (+8428) 3829 6322
+                </a>
+
+                @await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxLoginHeader.cshtml")
+            </div>
+            @await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxForgotPassword.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxSubmitForgotPassword.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/Components/MasterPage/Partial/_BoxForgotPasswordByTax.cshtml")
+        </div>
+        <div class="header-menu">
+            @await Component.InvokeAsync("Menu", new MenuViewComponent.ReqMenu { IsNavigation = false, IsMobile = false })
+            @await Component.InvokeAsync("Menu", new MenuViewComponent.ReqMenu { ViewName = "Navigation", IsNavigation = true, IsMobile = false })
+          
+        </div>
+        <!-- Popup thông -->
+        <div class="bgsend-overlay"></div>
+        <div class="popup-send">
+            <p class="noti"></p>
+            <p class="txt"></p>
+            <div class="close-send">ĐÓNG</div>
+        </div>
+        <!-- Popup thông báo -->
+    </section>
+
+</header>
+<!-- / Header -->

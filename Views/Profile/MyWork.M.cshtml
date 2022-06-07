@@ -1,0 +1,106 @@
+﻿@using ketnoicungcau.business.Enums
+@model ketnoicungcau.vn.ViewModels.vmMywork
+@inject ketnoicungcau.business.Framework.IWorkContext _workContext
+
+@{
+    Layout = "_Layout.M";
+    ViewData["Title"] = "Kết nối của tôi - Kết nối cung cầu";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Kết nối của tôi - Kết nối cung cầu",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="~/Contents/css/bundle/profile.M.min.css?v=@rnd">
+}
+
+<section>
+    <div class="profile clearfix">
+        <div class="content">
+            <h2>Kết nối của tôi</h2>
+            <div class="content-wrap">
+                <div class="tab-connect">
+                    <a class="current tab-click" id="tab-receive">Kết nối đã nhận</a>
+                    <a class="tab-click" id="tab-send">Kết nối đã gửi</a>
+                </div>
+                <div class="tab-content current" id="tab1">
+                    <ul class="state">
+                        <li>
+                            <input type="radio" class="radio-button" value="Chờ kết nối" name="state" id="connect" data-status="@((int)StatusDeals.Waiting)">
+                            <label for="connect">Chờ kết nối</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button" value="Đồng ý" name="state" id="agree" data-status="@((int)StatusDeals.Accept)">
+                            <label for="agree">Đồng ý</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button" value="Từ chối" name="state" id="cancel" data-status="@((int)StatusDeals.Deny)">
+                            <label for="cancel">Từ chối</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button active" value="Tất cả" name="state" id="all" data-status="@((int)StatusDeals.All)" checked="check">
+                            <label for="all">Tất cả</label>
+                        </li>
+                    </ul>
+                    <div class="table-connect">
+
+                        <partial name="~/Views/Profile/Partial/Deals/_DealsList.cshtml" model="@Model.TabReceive" />
+
+                    </div>
+                    <a class="seemore-another" @(Model.TabReceive.Left > 0 ? "" : "style=display:none;")>Xem thêm @Model.TabReceive.Left kết nối khác</a>
+                </div>
+                <div class="tab-content" id="tab2">
+                    <ul class="state">
+                        <li>
+                            <input type="radio" class="radio-button" value="Chờ kết nối" name="state2" id="connect2" data-status="@((int)StatusDeals.Waiting)">
+                            <label for="connect2">Chờ kết nối</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button" value="Đồng ý" name="state2" id="agree2" data-status="@((int)StatusDeals.Accept)">
+                            <label for="agree2">Đồng ý</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button" value="Từ chối" name="state2" id="cancel2" data-status="@((int)StatusDeals.Deny)">
+                            <label for="cancel2">Từ chối</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="radio-button active" value="Tất cả" name="state2" id="all2" data-status="@((int)StatusDeals.All)" checked="check">
+                            <label for="all2">Tất cả</label>
+                        </li>
+                    </ul>
+                    <div class="table-connect">
+
+                        <partial name="~/Views/Profile/Partial/Deals/_DealsList.cshtml" model="@Model.TabSend" />
+
+                    </div>
+                    <a class="seemore-another" @(Model.TabSend.Left > 0 ? "" : "style=display:none;")>Xem thêm @Model.TabSend.Left kết nối khác</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="detail-deal">
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var query = {
+            Status: "",
+            PageIndex: 0,
+            PageSize: 7
+        };
+    </script>
+    <script src="~/Contents/js/bundle/mywork.min.js?v=@rnd"></script>
+}

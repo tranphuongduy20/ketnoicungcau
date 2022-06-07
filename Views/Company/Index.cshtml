@@ -1,0 +1,95 @@
+﻿@using ketnoicungcau.business.UI
+@using ketnoicungcau.business.Extensions
+@using ketnoicungcau.vn.ViewComponents
+@model ketnoicungcau.vn.ViewModels.vmCompany
+@{
+    ViewData["Title"] = "Danh sách doanh nghiệp cung cấp hàng hoá trên cả nước";
+    var rnd = new Random().Next();
+}
+
+@section metaHeader
+{
+    @if (Model != null)
+    {
+        var modelSEO = new ketnoicungcau.business.ModelWeb.HeaderSEO()
+        {
+            Title = "Danh sách doanh nghiệp cung cấp hàng hoá trên cả nước",
+            Description = ""
+        };
+        <partial name="~/Views/Common/Partial/_MetaInfo.cshtml" model="@modelSEO" />
+    }
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var query = {
+                CategoryId: '@Model.CategoryId',
+                StrListCateId: '',
+                PageIndex: 0,
+                PageIndexBuy: 0,
+                PageIndexSell: 0,
+                PageSize: '@Model.PageSize',
+                IsFilterManyCate: '0',
+                IsGetAll: false,
+                IsMobile: false,
+                IsDesktop: true,
+            };
+    </script>
+
+    <script src="~/Contents/js/Company/company.dev.js?v=@rnd"></script>
+}
+<head>
+    <link rel="stylesheet" href="~/Contents/css/bundle/global.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/bundle/listing.min.css" />
+    <link rel="stylesheet" href="~/Contents/css/bundle/company.min.css" />
+</head>
+
+@if (Model?.Companys?.Count > 0)
+{
+    <section>
+        <div class="filter-company">
+            <p class="number-show">@Model.Companys.Count Doanh nghiệp</p>
+            @if (Model.ProductCategories != null && Model.ProductCategories.Count > 0)
+            {
+                <div class="quicklink">
+                    <a href="javascript:void(0)" data-url="all" data-id="0" class="cate__filter @(Model.CategoryId > 0 ? "" : "active")">Tất cả</a>
+                    @foreach (var cate in Model.ProductCategories)
+                    {
+                        <a href="javascript:void(0)" data-url="@cate.Url" data-id="@cate.Categoryid" class="cate__filter @(Model.CategoryId == cate.Categoryid ? "active" : "")">@cate.Categoryname</a>
+                    }
+                </div>
+                <a id="show-all-cate" style="display: none;color: #1C67D8; margin-left: 555px; cursor: pointer " class="arrow-menu click-submenu">Xem tất cả danh mục</a>
+            }
+            else
+            {
+                <a hidden href="javascript:void(0)" data-url="all" data-id="0" class="cate__filter active">Tất cả</a>
+            }
+        </div>
+        <div class="listing-company">
+            <ul class="listcompany">
+                @foreach (var company in Model.Companys)
+                {
+                    <li class="item">
+                        <a href="@company.GenCompanyUrl()">
+                            <div class="img">
+                                <img src="@company.Logosrc.BuildImgUrl()" alt="@company.Companyname">
+                            </div>
+                            <div class="content">
+                                <p class="title">@company.Companyname</p>
+                                @*<h3 class="sale__product">@company.Saleproduct</h3>*@
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="viewmore_company">
+            @if (Model.TotalCompany > (Model.PageIndex + 1) * Model.PageSize)
+            {
+                <a href="javascript:viewMoreCompany()" class="btn-readmore arrowB"><span>Xem thêm @(Model.TotalCompany - (Model.PageIndex + 1) * Model.PageSize) doanh nghiệp</span></a>
+            }
+        </div>
+    </section>
+}
+

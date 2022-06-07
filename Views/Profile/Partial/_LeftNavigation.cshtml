@@ -1,0 +1,21 @@
+﻿@using ketnoicungcau.business.Helpers.Interface
+@model string
+@inject IUserHelpers _userHelpers;
+@{
+    var currentUser = await _userHelpers.GetCookiesUserWeb();
+    var CountDeals = 0;
+    if (currentUser != null && currentUser.Companyid > 0)
+        CountDeals = await _userHelpers.GetNumberNotifyDeals(currentUser.Companyid);
+    if (Model != null && string.IsNullOrEmpty(Model) == false)
+    {
+        <ul class="sidebar">
+            <li class="@(Model == "profile" ? "current" : "")"><a @(Model != "profile" ? @"href=/profile" : "") >Thông tin tài khoản</a></li>
+            <li class="@(Model == "doi-mat-khau" ? "current" : "")"><a @(Model != "doi-mat-khau" ? @"href=/doi-mat-khau" : "")>Đổi mật khẩu</a></li>
+            <li class="@(Model == "mywork" ? "current" : "")"><a @(Model != "mywork" ? @"href=/mywork" : "")>Kết nối của tôi <span @(CountDeals > 0 ? "" : "style=display:none;")>@CountDeals</span></a></li>
+            <li class="@(Model == "productlist?type=2" ? "current" : "")"><a @(Model != "productlist?type=2" ? @"href=/productlist?type=2" : "")>Sản phẩm chào bán</a></li>
+            <li class="@(Model == "productlist?type=1" ? "current" : "")"><a @(Model != "productlist?type=1" ? @"href=/productlist?type=1" : "")>Sản phẩm chào mua</a></li>
+            <li class="@(Model == "addproduct?type=2" ? "current" : "")"><a @(Model != "addproduct?type=2" ? @"href=/addproduct?type=2" : "")>Đăng sản phẩm chào bán</a></li>
+            <li class="@(Model == "addproduct?type=1" ? "current" : "")"><a @(Model != "addproduct?type=1" ? @"href=/addproduct?type=1" : "")>Đăng sản phẩm chào mua</a></li>
+        </ul>
+    }
+}

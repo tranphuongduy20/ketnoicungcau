@@ -1,0 +1,26 @@
+﻿@model List<ketnoicungcau.business.Model.ProductStandard>
+
+<div id="list-standard" class="filter__item">
+    <p class="filter-txt">Tiêu chuẩn</p>
+    <div class="filter-main">
+
+        <div class="filter-search">
+            <input type="text" placeholder="Tìm tiêu chuẩn">
+            <button type="submit">
+                <i class="icon-search"></i>
+            </button>
+        </div>
+
+        <ul class="list-distrist">
+        @{
+            if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <li data-id="@item.Standardid"><a><i class="icon-checked"></i>@item.Standardname</a></li>
+                }
+            }
+        }
+    </ul>
+    </div>
+</div>

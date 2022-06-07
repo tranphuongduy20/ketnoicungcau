@@ -1,0 +1,45 @@
+﻿@model List<ketnoicungcau.business.ModelWeb.Menu>
+
+<div class="menu-category">
+    <div class="menu-category-hd">
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        Danh mục
+    </div>
+    <div class="wrap-menushow">
+        <nav class="list-catmenu">
+            <ul>
+                @{
+                    if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            if (item.IsActived == 1)
+                            {
+                                <li>
+                                    <a href="~/@item.Url" class="@(item.ChildMenus != null && item.ChildMenus.Any() && item.ChildMenus.FirstOrDefault().IsActived == 1 ? "arrow-submenu" : "")"><span>@item.Name</span></a>
+                                    @if (item.ChildMenus != null && item.ChildMenus.Any() && item.ChildMenus.FirstOrDefault().IsActived == 1)
+                                    {
+                                        <ul class="sub-catmenu">
+                                            @{ foreach (var sub in item.ChildMenus)
+                                                {
+                                                    if (sub.IsActived == 1)
+                                                    {
+                                                        <li><a href="~/@sub.Url-chao-ban" data-id="@sub.Id">@sub.Name</a></li>
+                                                    }
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                        }
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
