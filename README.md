@@ -7,7 +7,7 @@
   * Đinh Quang Hoàng  - 18520282
   * Trần Phương Duy   - 18520038
   ### Poster
-  ![alt](https://imgur.com/uByYX51)
+  ![alt](https://i.imgur.com/uByYX51.png)
 ## Mô tả
   ### Mô tả tổng thể 
   ![alt](https://i.imgur.com/ugpvIx4.png)
