@@ -1,47 +1,37 @@
-# Fashion Store Mobile App
+# Kết nối cung cầu (Mobile)
 ## Giới thiệu
   ### Tên đề tài
-   Ứng dụng Quản lý Cửa hàng Thời trang
+   Ứng dụng Kết nối cung cầu mua bán
   ![alt](https://i.imgur.com/d2MznRx.png)
   ### Thông tin nhóm
-  * Đinh Quang Hoàng  - 18520282
   * Trần Phương Duy   - 18520038
+  * Hoàng Đình Quang  - 18520342
+  * Võ Minh Quý       - 18521316
   ### Poster
-  ![alt](https://i.imgur.com/uByYX51.png)
+  ![alt](https://i.imgur.com/NSpc3Nh.png)
 ## Mô tả
   ### Mô tả tổng thể 
-  ![alt](https://i.imgur.com/ugpvIx4.png)
+  ![alt](https://i.imgur.com/p9Ap9Nd.png)
+  ![alt](https://i.imgur.com/Jw3kVcr.png)
   ### Mô tả người dùng
-  ![alt](https://i.imgur.com/FKwpwUa.png)
+  ![alt](https://i.imgur.com/2tw6nhY.png)
 ## Thiết kế
   ### Thiết kế dữ liệu
-   Hệ quản trị cơ sở dữ liệu: MySQL
+   Hệ quản trị cơ sở dữ liệu: PostgreSQL
    
-   ![alt](https://i.imgur.com/1uamNTn.png)
+   ![alt](https://i.imgur.com/Ct5hJmE.png)
   ### Thiết kế giao diện
-   #### Sơ đồ liên kết các màn hình
-  ![alt](https://i.imgur.com/4IyoZRF.png)
-   #### Danh sách các màn hình
-   ##### Màn hình đăng nhập
- ![alt](https://i.imgur.com/0Oc0hH9.png)
-   ##### Màn hình đăng ký
-  ![alt](https://i.imgur.com/wvACrJA.png)
-   ##### Màn hình trang chủ và xem chi tiết sản phẩm
-  ![alt](https://i.imgur.com/87ViQ09.png)
-   ##### Màn hình phụ và màn hình thông tin cửa hàng
-  ![alt](https://i.imgur.com/2WIDFPQ.png)
-   ##### Màn hình tìm kiếm 
-  ![alt](https://i.imgur.com/XOCyb9h.png)
-   ##### Màn hình giỏ hàng và thanh toán, xem lịch sử mua hàng
-  ![alt](https://i.imgur.com/fwbqp6l.png)
+  #### Sơ đồ một số màn hình
+  ![alt](https://i.imgur.com/N9pw9TF.png)
+  ![alt](https://i.imgur.com/9YEjtRP.png)
   ### Thiết kế kiến trúc
   ![alt](https://i.imgur.com/3k3RXKy.png)
 ## Môi trường phát triển và triển khai
   ### Môi trường phát triển
    * Hệ điều hành: Microsoft Windows 10
-   * Hệ quản trị cơ sở dữ liệu: MySQL
-   * Công nghệ: Nodejs, React native
-   * Công cụ xây dựng ứng dụng: Visual Studio Code
+   * Hệ quản trị cơ sở dữ liệu: PostgreSQL
+   * Công nghệ: ASP .NET
+   * Công cụ xây dựng ứng dụng: Visual Studio 2019
   ### Môi trường triển khai
    * Hệ điều hành: Microsoft Windows 
    * Nền tảng: android, trình duyệt
@@ -50,16 +40,5 @@
   
   https://developer.mozilla.org/en-US/docs/Web/JavaScript
   
-  https://www.w3schools.com/js/ 
-  * React navigation: 5.x 
-  
-  https://reactnavigation.org/
-  * React native: 0.62 
-  
-  https://reactnative.dev/docs/getting-started
-  * Nodejs
-  
-  https://nodejs.org/en/docs
-  
-  https://sequelize.org
+
 
